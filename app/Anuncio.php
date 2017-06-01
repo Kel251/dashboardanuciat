@@ -8,7 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Anuncio extends Authenticatable
 {
     use Notifiable;
-      
+     
+   protected $primaryKey = 'Id_anun';
     protected $table = 'det_anuncios';
     
     public $timestamps = false;
