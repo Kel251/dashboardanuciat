@@ -1,6 +1,7 @@
 @extends('dashboard.layouts.frame')
 
-<?php $message = Session::get('message') ?>
+<!-- PRINT MESSAGE OF CREATE SUCCESSFUL  
+?php $message = Session::get('message') ?--->
 
 @section('content')
 <div class="main-content">
@@ -336,7 +337,8 @@
 
                     <div class="hr hr32 hr-dotted"></div>
                     <div class="page-header">
-                        @if($message == 'store')
+                        <!--  PRINT MESSAGE OF ADD CREATED SUCCESSFUL
+                        @ if($ message == 'store')
                         <div class="alert alert-block alert-success">
                             <button type="button" class="close" data-dismiss="alert">
                                 <i class="ace-icon fa fa-times"></i>
@@ -346,7 +348,19 @@
                                 Anuncio creado exitosamente.                        
                             </strong>                        
                         </div>
+                        @ endif-->
+                        @if(Session::has('message'))
+                        <div class="alert alert-block alert-success">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+                            <i class="ace-icon fa fa-check green"></i>
+                            <strong class="green">
+                                {{Session::get('message')}}                        
+                            </strong>                        
+                        </div>
                         @endif
+
                         <h1>
                             Anuncios publicados
                             <small>
@@ -422,7 +436,10 @@
                                                     {!!link_to_route('dashboard.edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;']);!!}
                                                 </button>
 
-                                                <button class="btn btn-xs btn-danger">
+                                                {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}
+                                                    {!!Form::submit('Eliminar',['class'=>'btn btn-xs btn-danger','type'=>'button'])!!}
+                                                {!!Form::close()!!}
+                                                <button class="btn btn-xs btn-danger ">
                                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
                                                 </button>
 

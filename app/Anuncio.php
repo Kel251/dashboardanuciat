@@ -5,13 +5,12 @@ namespace Anunciate;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Anuncio extends Authenticatable
-{
+class Anuncio extends Authenticatable {
+
     use Notifiable;
-     
-   protected $primaryKey = 'Id_anun';
+
+    protected $primaryKey = 'Id_anun';
     protected $table = 'det_anuncios';
-    
     public $timestamps = false;
 
     /**
@@ -20,7 +19,7 @@ class Anuncio extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'Anuncio','Descripcion','telefono', 'email', 'precio','Id_anun',
+        'Anuncio', 'Descripcion', 'telefono', 'email', 'precio', 'Id_anun',
     ];
 
     /**
@@ -31,4 +30,5 @@ class Anuncio extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
 }

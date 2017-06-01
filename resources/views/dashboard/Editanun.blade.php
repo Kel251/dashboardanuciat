@@ -105,48 +105,29 @@
 
             <div class="row">
                 <div class="col-xs-12">
-<!--                     PAGE CONTENT BEGINS -->
-                    {!!Form::model($anun,['route'=>['dashboard.update',$anun->Id_anun,'method'=>'PUT'],'class'=>'form-horizontal','role'=>'form'])!!}
-                        <div class="form-group">
-                            {!!Form::label('nuncio', 'Anuncio:',array('class'=>'col-sm-3 control-label no-padding-right', 'for'=>'form-field-1'))!!}
-                            <div class="col-sm-9">
-                                {!!Form::text('Anuncio',null,['id'=>'form-field-1','placeholder'=>'Ingresa un titulo','class'=>'form-control'])!!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {!!Form::label('null','Descripción:',['class'=>'col-sm-3 control-label no-padding-right', 'for'=>'form-field-1-1'])!!}
-                            <div class="col-sm-9">
-                                {!!Form::text('Descripcion',null,['id'=>'form-field-1-1','placeholder'=>'Agrega un descripción','class'=>'form-control'])!!}
-                            </div>
-                        </div>
-                    <div class="form-group">
-                        {!!Form::label(null,'Teléfono:',['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-field-2-1-1'])!!}
-                        <div class="col-sm-9">
-                            {!!Form::text('Telefono',null,['id'=>'form-field-2-1-1','placeholder'=>'Agrega tu teléfono de contacto','class'=>'form-control'])!!}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {!!Form::label(null,'Email:',['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-field-2-2-1'])!!}
-                        <div class="col-sm-9">
-                            {!!Form::text('email',null,['id'=>'form-field-2-2-1','placeholder'=>'Agrega tu correo','class'=>'form-control'])!!}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {!!Form::label(null,'Precio:',['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-field-2-2-2'])!!}
-                        <div class="col-sm-9">
-                            {!!Form::text('precio',null,['id'=>'form-field-2-2-2','placeholder'=>'Agrega el costo','class'=>'form-control'])!!}
-                        </div>
-                    </div>
-                    
+                    <!--                     PAGE CONTENT BEGINS -->
+                    {!!Form::model($anun,['route'=>['dashboard.update',$anun->Id_anun],'method'=>'PUT','class'=>'form-horizontal','role'=>'form'])!!}
+                    @include('dashboard.forms.anuncio')
+
                     <div class="clearfix form-actions">
-                            <div class="col-md-offset-3 col-md-9">
-                                {!!Form::submit('Registrar',['class'=>'btn btn-info','type'=>'button'])!!}
-                                {!!Form::reset('Cancelar',['class'=>'btn btn-info','type'=>'button'])!!}
-                            </div>
+                        <div class="col-md-offset-3 col-md-9">
+                            {!!Form::submit('Actualizar',['class'=>'btn btn-info','type'=>'button'])!!}
+                            {!!Form::reset('Cancelar',['class'=>'btn btn-info','type'=>'button'])!!}
                         </div>
-                    
+                    </div>
+
                     {!!Form::close()!!}
                     
+                    {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}                    
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            {!!Form::submit('Eliminar',['class'=>'btn btn-danger','type'=>'button'])!!}
+                        </div>
+                    </div>
+
+                    {!!Form::close()!!}
+
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>

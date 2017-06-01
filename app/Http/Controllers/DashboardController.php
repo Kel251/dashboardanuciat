@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 //Esta linea evita el uso constante de \Anunciate\Anuncio:: al llamar el modelo y metodo
 use Anunciate\Anuncio;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 class DashboardController extends Controller
@@ -23,8 +25,8 @@ class DashboardController extends Controller
     
     public function store(Request $request){
          \Anunciate\Anuncio::create([
-            'Anuncio' => $request['anuncio'],
-            'Descripcion' => $request['descripcion'],
+            'Anuncio' => $request['Anuncio'],
+            'Descripcion' => $request['Descripcion'],
             'telefono' => $request['telefono'],
             'email' => $request['email'],
             'precio' => $request['precio']
@@ -40,6 +42,21 @@ class DashboardController extends Controller
 //                ->get();
 //        $anun = DB::table('det_anuncios')->select('*')->where('Id_anun', '=', $id)->get();
         return view('dashboard.Editanun',['anun'=>$anun]);
+    }
+    
+    public function update($Id_anun, Request $request) {
+        $anun = Anuncio::find($Id_anun);
+        $anun->fill($request->all());
+        $anun->save();
+        
+        Session::flash('message','Anuncio modificado correctamente.');
+        return Redirect::to('/dashboard');
+    }
+    
+    public function destroy($id) {
+        Anuncio::destroy($id);
+        Session::flash('message','Anuncio eliminado correctamente.');
+        return Redirect::to('/dashboard');
     }
     
 }
