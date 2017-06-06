@@ -44,20 +44,15 @@
 		<![endif]-->
 	</head>
 
-	<body class="no-skin">
-		
-
+	<body class="no-skin">	
+            @include('dashboard.layouts.header')
 		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
-
-			@include('dashboard.layouts.header') 
-			
                         
                         @include('dashboard.layouts.sidebar') 
-                        @yield('content')			
-                        
+                        @yield('content')			                        
                         
                         @include('dashboard.layouts.footer') 			
 
@@ -78,8 +73,7 @@
 <![endif]-->
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-                {!!Html::script('assets/js/jquery-2.1.4.min.js')!!}	
+		</script>	
                 {!!Html::script('assets/js/bootstrap.min.js')!!}
 
 		<!-- page specific plugin scripts -->

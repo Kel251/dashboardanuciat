@@ -439,9 +439,9 @@
                                                 {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}
                                                     {!!Form::submit('Eliminar',['class'=>'btn btn-xs btn-danger','type'=>'button'])!!}
                                                 {!!Form::close()!!}
-                                                <button class="btn btn-xs btn-danger ">
+<!--                                                <button class="btn btn-xs btn-danger ">
                                                     <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </button>
+                                                </button>-->
 
                                                 <button class="btn btn-xs btn-warning">
                                                     <i class="ace-icon fa fa-flag bigger-120"></i>

@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Anunciate\Estados;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,3 +47,4 @@ Route::resource('blue','BlueController');
 //Route::name('dashboard')->get('dashboard', 'BlueController@dashboard');
 
 Route::resource('dashboard','DashboardController');
+Route::get('municipio/{id}','DashboardController@getMunicipios');

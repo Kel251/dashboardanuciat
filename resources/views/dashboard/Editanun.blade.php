@@ -107,7 +107,45 @@
                 <div class="col-xs-12">
                     <!--                     PAGE CONTENT BEGINS -->
                     {!!Form::model($anun,['route'=>['dashboard.update',$anun->Id_anun],'method'=>'PUT','class'=>'form-horizontal','role'=>'form'])!!}
+                    
+                    <div class="form-group">
+                        {!!Form::label('null','Categoría:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
+                        <div class="col-sm-9"><!--idform-field-select-3-->
+                            <select name="Id_cat" class="chosen-select form-control" id="categoria" data-placeholder="Elije un Estado...">
+                                @foreach($categoriau as $cate)
+                                <option value="{{$cate->Id_cat}}">{{$cate->Nom_cat}}</option>
+                                @endforeach
+                                @foreach($categoria as $cat)
+                                <option value="{{$cat->Id_cat}}">{{$cat->Nom_cat}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    
                     @include('dashboard.forms.anuncio')
+                    
+                    <div class="form-group">
+                        {!!Form::label('null','Estado:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
+                        <div class="col-sm-9"><!--idform-field-select-3-->
+                            <select name="Id_est" class="chosen-select form-control" id="estado" data-placeholder="Elije un Estado...">
+                                @foreach($estadoa as $est)
+                                <option value="{{$est->Id_est}}">{{$est->Nom_est}}</option>
+                                @endforeach
+                                @foreach($estado as $es)
+                                <option value="{{$es->Id_est}}">{{$es->Nom_est}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!!Form::label('null','Municipio:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
+
+                        <div class="col-sm-9"><!--idform-field-select-3-->
+                            <select name="Id_mun" class="chosen-select form-control" id="municipo" data-placeholder="Elije un municipio...">
+                                
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="clearfix form-actions">
                         <div class="col-md-offset-3 col-md-9">

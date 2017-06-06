@@ -10,6 +10,7 @@
         {!!Form::text('Descripcion',null,['id'=>'form-field-1-1','placeholder'=>'Agrega un descripción','class'=>'form-control'])!!}
     </div>
 </div>
+
 <div class="form-group">
     {!!Form::label(null,'Teléfono:',['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-field-2-1-1'])!!}
     <div class="col-sm-9">

@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.frame')
+@extends('dashboard.layouts.framef')
 @section('content')
 <div class="main-content">
     <div class="main-content-inner">
@@ -101,14 +101,45 @@
                         Common form elements and layouts
                     </small>
                 </h1>
-            </div><!-- /.page-header -->
+            </div><!-- /.page-header -->            
+            <label for="form-field-select-3">Chosen</label>
+            <br/>
 
             <div class="row">
                 <div class="col-xs-12">
                     <!--                     PAGE CONTENT BEGINS -->
                     {!!Form::open(['route'=>'dashboard.store','method'=>'POST','class'=>'form-horizontal','role'=>'form'])!!}
+                    <div class="form-group">
+                        {!!Form::label('null','Categoría:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
+                        <div class="col-sm-9"><!--idform-field-select-3-->
+                            <select name="Id_cat" class="chosen-select form-control" id="categoria" data-placeholder="Elije un Estado...">
+                                @foreach($categoria as $cat)
+                                <option value="{{$cat->Id_cat}}">{{$cat->Nom_cat}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     @include('dashboard.forms.anuncio')
-                    <div class="clearfix form-actions">
+                    <div class="form-group">
+                        {!!Form::label('null','Estado:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
+                        <div class="col-sm-9"><!--idform-field-select-3-->
+                            <select name="Id_est" class="chosen-select form-control" id="estado" data-placeholder="Elije un Estado...">
+                                @foreach($estado as $es)
+                                <option value="{{$es->Id_est}}">{{$es->Nom_est}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {!!Form::label('null','Municipio:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
+
+                        <div class="col-sm-9"><!--idform-field-select-3-->
+                            <select name="Id_mun" class="chosen-select form-control" id="municipo" data-placeholder="Elije un municipio...">
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions">                        
                         <div class="col-md-offset-3 col-md-9">
                             {!!Form::submit('Registrar',['class'=>'btn btn-info','type'=>'button'])!!}
                             {!!Form::reset('Cancelar',['class'=>'btn btn-info','type'=>'button'])!!}
