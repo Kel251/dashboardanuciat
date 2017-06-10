@@ -107,7 +107,8 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <!--                     PAGE CONTENT BEGINS -->
+                    <!--                     PAGE CONTENT BEGINS --> 
+                    <!-- Inicico de fomuluario para crear Anuncio-->
                     {!!Form::open(['route'=>'dashboard.store','method'=>'POST','class'=>'form-horizontal','role'=>'form'])!!}
                     <div class="form-group">
                         {!!Form::label('null','Categoría:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
