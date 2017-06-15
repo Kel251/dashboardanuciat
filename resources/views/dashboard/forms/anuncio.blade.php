@@ -29,3 +29,9 @@
         {!!Form::text('precio',null,['id'=>'form-field-2-2-2','placeholder'=>'Agrega el costo','class'=>'form-control'])!!}
     </div>
 </div>
+<div class="form-group">
+    {!!Form::label(null,'Imagen:',['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-field-3-1-1'])!!}
+    <div class="col-sm-9">
+        {!!Form::file('archivo',['id'=>'id-input-file-2'])!!}
+    </div>
+</div>

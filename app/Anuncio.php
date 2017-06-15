@@ -19,7 +19,7 @@ class Anuncio extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'Anuncio', 'Descripcion', 'telefono', 'email', 'precio', 'Id_est', 'Id_cat',
+        'Anuncio', 'Descripcion', 'telefono', 'email', 'precio', 'Id_est', 'Id_cat','archivo',
     ];
 
     /**
