@@ -106,6 +106,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!--                     PAGE CONTENT BEGINS -->
+                    @include('dashboard.alerts.request')
                     {!!Form::model($anun,['route'=>['dashboard.update',$anun->Id_anun],'method'=>'PUT','class'=>'form-horizontal','role'=>'form'])!!}
                     
                     <div class="form-group">
@@ -144,6 +145,11 @@
                             <select name="Id_mun" class="chosen-select form-control" id="municipo" data-placeholder="Elije un municipio...">
                                 
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-9"><!--idform-field-select-3-->
+                            <img src="{'files/.'$arc}">
                         </div>
                     </div>
 

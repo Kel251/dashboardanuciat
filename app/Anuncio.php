@@ -1,7 +1,7 @@
 <?php
 
 namespace Anunciate;
-
+//hjgjhghg
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -19,7 +19,7 @@ class Anuncio extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'Anuncio', 'Descripcion', 'telefono', 'email', 'precio', 'Id_est', 'Id_cat',
+        'Anuncio', 'Descripcion', 'telefono', 'email', 'precio', 'Id_est', 'Id_cat','archivo',
     ];
 
     /**
