@@ -431,10 +431,10 @@
                                                     <i class="ace-icon fa fa-check bigger-120"></i>
                                                 </button>
 
-                                                <button class="btn btn-xs btn-info">
-                                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                    {!!link_to_route('dashboard.edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;']);!!}
-                                                </button>
+                                                <!--<button class="btn btn-xs btn-info">-->
+                                                    <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+                                                    {!!link_to_route('dashboard.edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
+                                                <!--</button>-->
 
                                                 {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}
                                                     {!!Form::submit('Eliminar',['class'=>'btn btn-xs btn-danger','type'=>'button'])!!}

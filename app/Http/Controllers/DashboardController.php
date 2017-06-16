@@ -2,7 +2,8 @@
 
 namespace Anunciate\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Anunciate\Http\Request;
+use Anunciate\Http\Requests\ValForms;
 use Illuminate\Support\Facades\DB;
 //Esta linea evita el uso constante de \Anunciate\Anuncio:: al llamar el modelo y metodo
 use Anunciate\Anuncio;
@@ -37,7 +38,17 @@ class DashboardController extends Controller {
         }
     }
 
-    public function store(Request $request) {
+    public function store(ValForms $request) {
+        //obtenemos el campo de file definido en el formulario
+        $file = $request->file('archivo');
+        
+        //obtenemos el nombre del archivo
+        $img = $file->getClientOriginalName();
+//        $name = $request->file('archivo')->getClientOriginalName();
+        
+//        /indicamos ue queremos guardar un nuevo archivo eb el disco local
+        \Storage::disk('local')->put($img, \File::get($file));
+        
         \Anunciate\Anuncio::create([
             'Anuncio' => $request['Anuncio'],
             'Descripcion' => $request['Descripcion'],
@@ -45,9 +56,10 @@ class DashboardController extends Controller {
             'email' => $request['email'],
             'precio' => $request['precio'],
             'Id_est' => $request['Id_est'],
-            'Id_cat' => $request['Id_cat']
+            'Id_cat' => $request['Id_cat'],
+                'archivo' => $img
         ]);
-
+        
         return redirect('/dashboard')->with('message', 'Anuncio creado correctamente');
     }
 
@@ -75,7 +87,7 @@ class DashboardController extends Controller {
         return view('dashboard.Editanun', compact('anun','estadoa','categoria','estado','categoriau'));
     }
 
-    public function update($Id_anun, Request $request) {
+    public function update($Id_anun, ValForms $request) {
         $anun = Anuncio::find($Id_anun);
         $anun->fill($request->all());
         $anun->save();
