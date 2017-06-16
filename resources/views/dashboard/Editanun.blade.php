@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.frame')
+@extends('dashboard.layouts.framef')
 @section('content')
 <div class="main-content">
     <div class="main-content-inner">
