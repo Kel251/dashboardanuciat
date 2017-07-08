@@ -48,3 +48,10 @@ Route::resource('blue','BlueController');
 
 Route::resource('dashboard','DashboardController');
 Route::get('municipio/{id}','DashboardController@getMunicipios');
+
+
+Route::name('redexcel')->get('redexcel','ExcelController@index');
+
+Route::name('login')->get('/login','LoginController@login');
+Route::name('valida')->get('/valida','LoginController@valida');
+Route::name('logout')->get('/logout','LoginController@logout');
