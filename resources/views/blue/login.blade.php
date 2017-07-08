@@ -1,16 +1,17 @@
 @extends('blue.layouts.plantilla')
 @section('content')
-	        <form action="index.html" class="templatemo-login-form">
+	        <form action="{{ route('valida')}}" method="POST" class="templatemo-login-form">
+	        {{ csrf_filed() }}
 	        	<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<input type="text" class="form-control" placeholder="js@dashboard.com">           
+		              	<input type="text" name="mail" class="form-control" placeholder="js@dashboard.com">           
 		          	</div>	
 	        	</div>
 	        	<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>	        		
-		              	<input type="password" class="form-control" placeholder="******">           
+		              	<input type="password" name="pass" class="form-control" placeholder="******">           
 		          	</div>	
 	        	</div>	          	
 	          	<div class="form-group">

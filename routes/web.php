@@ -45,7 +45,8 @@ Route::resource('blue','BlueController');
 
 
 //Route::name('dashboard')->get('dashboard', 'BlueController@dashboard');
-
+Route::name('search_name')->post('dashboard', 'DashboardController@index'); 
+Route::get('municipio/{id}','DashboardController@getMunicipio');
 Route::resource('dashboard','DashboardController');
 Route::get('municipio/{id}','DashboardController@getMunicipios');
 

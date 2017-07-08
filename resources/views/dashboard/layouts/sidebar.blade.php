@@ -16,6 +16,9 @@
             <a href="{{ URL::action('DashboardController@create') }}" class="btn btn-info" title="Crear Anuncio">
                 <i class="ace-icon fa fa-pencil"></i>
             </a>
+            <a href="{{ route('redexcel') }}">
+                <img src="{{ asset('images/excel.png') }}">
+            </a>
 
             <button class="btn btn-warning">
                 <i class="ace-icon fa fa-users"></i>
