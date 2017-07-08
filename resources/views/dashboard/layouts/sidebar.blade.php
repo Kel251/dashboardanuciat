@@ -251,7 +251,7 @@
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
-                <span class="menu-text"> Tables </span>
+                <span class="menu-text"> Usuarios </span>
 
                 <b class="arrow fa fa-angle-down"></b>
             </a>
@@ -260,9 +260,10 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="tables.html">
+                    <a href="{ route( 'info' ) }">
+                        <a href="{{ URL::action('DashboardController@info') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Simple &amp; Dynamic
+                        Info usuarios registrados
                     </a>
 
                     <b class="arrow"></b>

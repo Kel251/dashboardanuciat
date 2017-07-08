@@ -45,10 +45,14 @@ Route::resource('blue','BlueController');
 
 
 //Route::name('dashboard')->get('dashboard', 'BlueController@dashboard');
-Route::name('search_name')->post('dashboard', 'DashboardController@index'); 
+//Route::name('search_name')->post('dashboard', 'DashboardController@index'); 
 Route::get('municipio/{id}','DashboardController@getMunicipio');
 Route::resource('dashboard','DashboardController');
+//Route::get('dashboard/info','DashboardController@info');
+//Route::name('info')->get('dashboard/infousers','DashboardController@info');
 Route::get('municipio/{id}','DashboardController@getMunicipios');
+
+Route::name('info')->get('desahboard/info', 'DashboardController@info');
 
 
 Route::name('redexcel')->get('redexcel','ExcelController@index');

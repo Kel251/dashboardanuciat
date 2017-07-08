@@ -44,14 +44,13 @@ class DashboardController extends Controller {
     public function store(ValForms $request) {
         //obtenemos el campo de file definido en el formulario
         $file = $request->file('archivo');
-        
+
         //obtenemos el nombre del archivo
         $img = $file->getClientOriginalName();
 //        $name = $request->file('archivo')->getClientOriginalName();
-        
 //        /indicamos ue queremos guardar un nuevo archivo eb el disco local
         \Storage::disk('local')->put($img, \File::get($file));
-        
+
         \Anunciate\Anuncio::create([
             'Anuncio' => $request['Anuncio'],
             'Descripcion' => $request['Descripcion'],
@@ -60,9 +59,9 @@ class DashboardController extends Controller {
             'precio' => $request['precio'],
             'Id_est' => $request['Id_est'],
             'Id_cat' => $request['Id_cat'],
-                'archivo' => $img
+            'archivo' => $img
         ]);
-        
+
         return redirect('/dashboard')->with('message', 'Anuncio creado correctamente');
     }
 
@@ -74,8 +73,8 @@ class DashboardController extends Controller {
 //        }
         $Id_est = $anun->Id_est;
         $Id_cat = $anun->Id_cat;
-        $estadoa = Estados::where('Id_est',$Id_est)->get();
-        $categoriau = \Anunciate\Categorias::where('Id_cat',$Id_cat)->get();
+        $estadoa = Estados::where('Id_est', $Id_est)->get();
+        $categoriau = \Anunciate\Categorias::where('Id_cat', $Id_cat)->get();
         $estado = Estados::All('Nom_est', 'Id_est');
 //        $anun = DB::table('det_anuncios')
 //                ->where('Id_anun', '=', $id)
@@ -87,7 +86,7 @@ class DashboardController extends Controller {
 //            ->select('*')
 //            ->where('Id_anun', '=', $Id_anun)
 //            ->get();
-        return view('dashboard.Editanun', compact('anun','estadoa','categoria','estado','categoriau'));
+        return view('dashboard.Editanun', compact('anun', 'estadoa', 'categoria', 'estado', 'categoriau'));
     }
 
     public function update($Id_anun, ValForms $request) {
@@ -103,6 +102,25 @@ class DashboardController extends Controller {
         Anuncio::destroy($id);
         Session::flash('message', 'Anuncio eliminado correctamente.');
         return Redirect::to('/dashboard');
+    }
+
+    public function info() {
+        $users = DB::table('users')
+
+                ->limit(20)
+                ->get();
+//        $users = \Anunciate\Users::All();
+        return view('dashboard.infousers',compact('users'));
+//       return Redirect::to('/dashboard');
+    }
+    
+    public function status($id, Request $request) {
+        $anun = \Anunciate\User::find($id);
+        $anun->fill($request->all());
+        $anun->save();
+
+        //Session::flash('message', 'Usuario modificado correctamente.');
+        return Redirect::to('/dashboard/infouser');
     }
 
 }

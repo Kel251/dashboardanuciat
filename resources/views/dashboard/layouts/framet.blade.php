@@ -391,7 +391,7 @@
         <!-- basic scripts -->
 
         <!--[if !IE]> -->
-        <script src="assets/js/jquery-2.1.4.min.js"></script>
+        {!!Html::script('assets/js/jquery-2.1.4.min.js')!!}
 
         <!-- <![endif]-->
 
@@ -417,7 +417,6 @@
         {!!Html::script('assets/js/ace-elements.min.js')!!}
         {!!Html::script('assets/js/ace.min.js')!!}
         
-        <script src=""></script>
 
         <!-- inline scripts related to this page -->
         <script type="text/javascript">

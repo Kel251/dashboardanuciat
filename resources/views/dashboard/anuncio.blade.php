@@ -109,7 +109,7 @@
                 <div class="col-xs-12">
                     <!--                     PAGE CONTENT BEGINS -->
                     @include('dashboard.alerts.request')
-                    {!!Form::open(['route'=>'dashboard.store','method'=>'POST','class'=>'form-horizontal','role'=>'form','files' => true])!!}
+                    {!!Form::open(['route'=>'dashboard.store','method'=>'POST','role'=>'form','files' => true])!!}
                     <div class="form-group">
                         {!!Form::label('null','Categoría:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
                         <div class="col-sm-9"><!--idform-field-select-3-->

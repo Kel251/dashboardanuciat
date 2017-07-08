@@ -16,13 +16,17 @@
             </ul><!-- /.breadcrumb -->
 
             <div class="nav-search" id="nav-search">
-                <form class="form-search" action="{{ route('search_name') }}" method="GET">
+                {!!Form::open(['route'=>'dashboard.index','method'=>'GET','class'=>'form-horizontal'])!!}
+                <!--  <    form class="form-search" action="{ route('search_name') }" method="GET"  >   -->
                     <span class="input-icon">
-                        <input type="text" name="name" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <!--<input type="text" name="name" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />-->
+                        {!!Form::text('name',null,['id'=>'nav-search-input','class'=>'form-control','placeholder'=>'Search ...', 'autocomplete'=>'off'])!!}
                         <i class="ace-icon fa fa-search nav-search-icon"></i>
                     </span>
-                    <button type="submit"> Buscar</button>
-                </form>
+                    <!--<button type="submit"> Buscar</button>-->
+                    {!!Form::submit('Buscar',['type'=>'button'])!!}
+                <!--</form>-->
+                {!!Form::close()!!}
             </div><!-- /.nav-search -->
         </div>
 
@@ -397,6 +401,7 @@
                                 </thead>
 
                                 <tbody>
+                                @if(isset($anuncios))
                                     @foreach($anuncios as $anun)
                                     <tr>
 <!--                                        <td class="center">
@@ -592,10 +597,13 @@
                                     </tr>-->
 
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div><!-- /.span -->
                         {{ $anuncios->render() }}
+
+                        @endif
                     </div><!-- /.row -->
 
                     <div class="hr hr-18 dotted hr-double"></div>
