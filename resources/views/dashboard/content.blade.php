@@ -16,11 +16,12 @@
             </ul><!-- /.breadcrumb -->
 
             <div class="nav-search" id="nav-search">
-                <form class="form-search">
+                <form class="form-search" action="{{ route('search_name') }}" method="GET">
                     <span class="input-icon">
-                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                        <input type="text" name="name" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
                         <i class="ace-icon fa fa-search nav-search-icon"></i>
                     </span>
+                    <button type="submit"> Buscar</button>
                 </form>
             </div><!-- /.nav-search -->
         </div>
