@@ -30,5 +30,13 @@ class Anuncio extends Authenticatable {
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function scopeName($query, $name){
+        //dd("scope: " . $name);
+        if($name != ""){
+        $query->where('anuncio', 'like', '%'.$name.'%')
+                ->orWhere('descripcion', 'like', '%'.$name.'%');
+        }
+    }
 
 }
