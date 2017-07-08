@@ -2,7 +2,8 @@
 
 namespace Anunciate\Http\Controllers;
 
-use Anunciate\Http\Request;
+//use Anunciate\Http\Request;
+use Illuminate\Http\Request;
 use Anunciate\Http\Requests\ValForms;
 use Illuminate\Support\Facades\DB;
 //Esta linea evita el uso constante de \Anunciate\Anuncio:: al llamar el modelo y metodo
@@ -14,10 +15,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class DashboardController extends Controller {
 
-    public function index() {
+    public function index(Request $request) {
+        //dd($request->get('name'));
 //        $anuncios = Anuncio::All();
 //        $anuncios = DB::table('det_anuncios')->simplePaginate(10);
-        $anuncios = \Anunciate\Anuncio::paginate(10);
+        //$anuncios = \Anunciate\Anuncio::paginate(10);
+        $anuncios = Anuncio::name($request->get('name'))->paginate(10);
         return view("dashboard/content", compact('anuncios'));
     }
 
