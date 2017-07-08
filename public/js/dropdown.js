@@ -6,7 +6,7 @@
 
 
 $("#estado").change(function(event){
-    $.get("municipio/"+event.target.value+"",function(response,state){
-        console.log();
+    $.get("municipios/"+event.target.value+"",function(response,state){
+        console.log(response);
     });
 });
