@@ -17,7 +17,7 @@
                 <i class="ace-icon fa fa-pencil"></i>
             </a>
             <a href="{{ route('redexcel') }}">
-                <img src="{{ asset('images/excel.png') }}">
+                <img src="{{ asset('images/excel.png') }}" height="30px" width="30px">
             </a>
 
             <button class="btn btn-warning">
@@ -42,7 +42,7 @@
 
     <ul class="nav nav-list">
         <li class="active">
-            <a href="index.html">
+            <a href="{{ URL::action('DashboardController@index') }}">
                 <i class="menu-icon fa fa-tachometer"></i>
                 <span class="menu-text"> Dashboard </span>
             </a>
@@ -260,7 +260,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="{ route( 'info' ) }">
+                    <!--<a href="{ route( 'info' ) }">-->
                         <a href="{{ URL::action('DashboardController@info') }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Info usuarios registrados
@@ -279,7 +279,7 @@
                 </li>
             </ul>
         </li>
-
+<!--
         <li class="">
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-pencil-square-o"></i>
@@ -518,7 +518,7 @@
                     <b class="arrow"></b>
                 </li>
             </ul>
-        </li>
+        </li>-->
     </ul><!-- /.nav-list -->
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

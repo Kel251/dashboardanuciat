@@ -18,13 +18,13 @@
             <div class="nav-search" id="nav-search">
                 {!!Form::open(['route'=>'dashboard.index','method'=>'GET','class'=>'form-horizontal'])!!}
                 <!--  <    form class="form-search" action="{ route('search_name') }" method="GET"  >   -->
-                    <span class="input-icon">
-                        <!--<input type="text" name="name" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />-->
-                        {!!Form::text('name',null,['id'=>'nav-search-input','class'=>'form-control','placeholder'=>'Search ...', 'autocomplete'=>'off'])!!}
-                        <i class="ace-icon fa fa-search nav-search-icon"></i>
-                    </span>
-                    <!--<button type="submit"> Buscar</button>-->
-                    {!!Form::submit('Buscar',['type'=>'button'])!!}
+                <span class="input-icon">
+                    <!--<input type="text" name="name" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />-->
+                    {!!Form::text('name',null,['id'=>'nav-search-input','class'=>'form-control','placeholder'=>'Search ...', 'autocomplete'=>'off'])!!}
+                    <i class="ace-icon fa fa-search nav-search-icon"></i>
+                </span>
+                <!--<button type="submit"> Buscar</button>-->
+                {!!Form::submit('Buscar',['type'=>'button'])!!}
                 <!--</form>-->
                 {!!Form::close()!!}
             </div><!-- /.nav-search -->
@@ -36,6 +36,24 @@
                     <i class="ace-icon fa fa-cog bigger-130"></i>
                 </div>
 
+                <div id="fb-root"></div>
+                <script>
+                    
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id))
+                            return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.9";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
+                
+                <script type="text/javascript">
+                    function initialfb(){
+                       $("#u_0_1").hide();
+                    };
+                    </script>
                 <div class="ace-settings-box clearfix" id="ace-settings-box">
                     <div class="pull-left width-50">
                         <div class="ace-settings-item">
@@ -108,10 +126,10 @@
                 </h1>
             </div><!-- /.page-header -->
 
-            <div class="row">
+            <div class="row" id="hide">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
-                    <div class="alert alert-block alert-success">
+<!--                    <div class="alert alert-block alert-success">
                         <button type="button" class="close" data-dismiss="alert">
                             <i class="ace-icon fa fa-times"></i>
                         </button>
@@ -124,7 +142,7 @@
                             <small>(v1.4)</small>
                         </strong>,
                         лёгкий, многофункциональный и простой в использовании шаблон для админки на bootstrap 3.3.6. Загрузить исходники с <a href="https://github.com/bopoda/ace">github</a> (with minified ace js/css files).
-                    </div>
+                    </div>-->
 
                     <div class="row">
                         <div class="space-6"></div>
@@ -136,11 +154,11 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">32</span>
-                                    <div class="infobox-content">comments + 2 reviews</div>
+                                    <span class="infobox-data-number">{{ $count2 }}</span>
+                                    <div class="infobox-content">comentarios </div>
                                 </div>
 
-                                <div class="stat stat-success">8%</div>
+                                <div class="stat stat-success">{{ $percent[0] }}%</div>
                             </div>
 
                             <div class="infobox infobox-blue">
@@ -165,8 +183,8 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">8</span>
-                                    <div class="infobox-content">new orders</div>
+                                    <span class="infobox-data-number">{{ $count }}</span>
+                                    <div class="infobox-content">Subscriptores</div>
                                 </div>
                                 <div class="stat stat-important">4%</div>
                             </div>
@@ -188,8 +206,8 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">6,251</span>
-                                    <div class="infobox-content">pageviews</div>
+                                    <span class="infobox-data-number">{{ $users }}</span>
+                                    <div class="infobox-content">Usuarios</div>
                                 </div>
 
                                 <div class="badge badge-success">
@@ -201,7 +219,7 @@
                             <div class="infobox infobox-blue2">
                                 <div class="infobox-progress">
                                     <div class="easy-pie-chart percentage" data-percent="42" data-size="46">
-                                        <span class="percent">42</span>%
+                                        <span class="percent">{{ $count3 }}</span>%
                                     </div>
                                 </div>
 
@@ -315,7 +333,7 @@
                                                     <i class="ace-icon fa fa-facebook-square fa-2x blue"></i>
                                                     &nbsp; likes
                                                 </span>
-                                                <h4 class="bigger pull-right">1,255</h4>
+                                                <h4 class="bigger pull-right"><div class="fb-like" data-href="https://www.facebook.com/Anunciate-1866920920296286/" data-layout="box_count" data-action="like" data-size="small"></div></h4>
                                             </div>
 
                                             <div class="grid3">
@@ -341,272 +359,10 @@
                     </div><!-- /.row -->
 
                     <div class="hr hr32 hr-dotted"></div>
-                    <div class="page-header">
-                        <!--  PRINT MESSAGE OF ADD CREATED SUCCESSFUL
-                        @ if($ message == 'store')
-                        <div class="alert alert-block alert-success">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <i class="ace-icon fa fa-times"></i>
-                            </button>
-                            <i class="ace-icon fa fa-check green"></i>
-                            <strong class="green">
-                                Anuncio creado exitosamente.                        
-                            </strong>                        
-                        </div>
-                        @ endif-->
-                        @if(Session::has('message'))
-                        <div class="alert alert-block alert-success">
-                            <button type="button" class="close" data-dismiss="alert">
-                                <i class="ace-icon fa fa-times"></i>
-                            </button>
-                            <i class="ace-icon fa fa-check green"></i>
-                            <strong class="green">
-                                {{Session::get('message')}}                        
-                            </strong>                        
-                        </div>
-                        @endif
 
-                        <h1>
-                            Anuncios publicados
-                            <small>
-                                <i class="ace-icon fa fa-angle-double-right"></i>
-                                overview &amp; stats
-                            </small>
-                        </h1>
-                    </div><!-- /.page-header -->
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <table id="simple-table" class="table  table-bordered table-hover">
-                                <thead>
-                                    <tr>
-<!--                                        <th class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </th>
-                                        <th class="detail-col">Details</th>-->
-                                        <th>Anuncio</th>
-                                        <th>Descripción</th>
-                                        <th class="hidden-480">Clicks</th>
-
-                                        <th>
-                                            <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                            Publicado
-                                        </th>
-                                        <th class="hidden-480">Status</th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                @if(isset($anuncios))
-                                    @foreach($anuncios as $anun)
-                                    <tr>
-<!--                                        <td class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </td>
-
-                                        <td class="center">
-                                            <div class="action-buttons">
-                                                <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-                                                    <i class="ace-icon fa fa-angle-double-down"></i>
-                                                    <span class="sr-only">Details</span>
-                                                </a>
-                                            </div>
-                                        </td>-->
-
-                                        <td style="width: 20%">
-                                            <a href="#">{{$anun->Anuncio}}</a>
-                                        </td>
-                                        <td style="width: 20%">{{$anun->Descripcion}}</td>
-                                        <td class="hidden-480">{{$anun->precio}}</td>
-                                        <td style="width: 20%">{{$anun->Fecha}}</td>
-
-                                        <td class="hidden-480">
-                                            <span class="label label-sm label-warning">Expiring</span>
-                                        </td>
-
-                                        <td>
-                                            <div class="hidden-sm hidden-xs btn-group">
-                                                <button class="btn btn-xs btn-success">
-                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                </button>
-
-                                                <!--<button class="btn btn-xs btn-info">-->
-                                                    <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
-                                                    {!!link_to_route('dashboard.edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
-                                                <!--</button>-->
-
-                                                {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}
-                                                    {!!Form::submit('Eliminar',['class'=>'btn btn-xs btn-danger','type'=>'button'])!!}
-                                                {!!Form::close()!!}
-<!--                                                <button class="btn btn-xs btn-danger ">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </button>-->
-
-                                                <button class="btn btn-xs btn-warning">
-                                                    <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                </button>
-                                            </div>
-
-                                            <div class="hidden-md hidden-lg">
-                                                <div class="inline pos-rel">
-                                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                    </button>
-
-                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                        <li>
-                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                <span class="blue">
-                                                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </li>
-
-                                                        <li>
-                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                <span class="green">
-                                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </li>
-
-                                                        <li>
-                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                <span class="red">
-                                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-<!--                                    <tr class="detail-row">
-                                        <td colspan="8">
-                                            <div class="table-detail">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-sm-2">
-                                                        <div class="text-center">
-                                                            <img height="150" class="thumbnail inline no-margin-bottom" alt="Domain Owner's Avatar" src="assets/images/avatars/profile-pic.jpg" />
-                                                            <br />
-                                                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                                                                <div class="inline position-relative">
-                                                                    <a class="user-title-label" href="#">
-                                                                        <i class="ace-icon fa fa-circle light-green"></i>
-                                                                        &nbsp;
-                                                                        <span class="white">Alex M. Doe</span>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xs-12 col-sm-7">
-                                                        <div class="space visible-xs"></div>
-
-                                                        <div class="profile-user-info profile-user-info-striped">
-                                                            <div class="profile-info-row">
-                                                                <div class="profile-info-name"> Username </div>
-
-                                                                <div class="profile-info-value">
-                                                                    <span>alexdoe</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="profile-info-row">
-                                                                <div class="profile-info-name"> Location </div>
-
-                                                                <div class="profile-info-value">
-                                                                    <i class="fa fa-map-marker light-orange bigger-110"></i>
-                                                                    <span>Netherlands, Amsterdam</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="profile-info-row">
-                                                                <div class="profile-info-name"> Age </div>
-
-                                                                <div class="profile-info-value">
-                                                                    <span>38</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="profile-info-row">
-                                                                <div class="profile-info-name"> Joined </div>
-
-                                                                <div class="profile-info-value">
-                                                                    <span>2010/06/20</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="profile-info-row">
-                                                                <div class="profile-info-name"> Last Online </div>
-
-                                                                <div class="profile-info-value">
-                                                                    <span>3 hours ago</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="profile-info-row">
-                                                                <div class="profile-info-name"> About Me </div>
-
-                                                                <div class="profile-info-value">
-                                                                    <span>Bio</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-xs-12 col-sm-3">
-                                                        <div class="space visible-xs"></div>
-                                                        <h4 class="header blue lighter less-margin">Send a message to Alex</h4>
-
-                                                        <div class="space-6"></div>
-
-                                                        <form>
-                                                            <fieldset>
-                                                                <textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
-                                                            </fieldset>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="clearfix">
-                                                                <label class="pull-left">
-                                                                    <input type="checkbox" class="ace" />
-                                                                    <span class="lbl"> Email me a copy</span>
-                                                                </label>
-
-                                                                <button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
-                                                                    Submit
-                                                                    <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>-->
-
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                        </div><!-- /.span -->
-                        {{ $anuncios->render() }}
-
-                        @endif
-                    </div><!-- /.row -->
 
                     <div class="hr hr-18 dotted hr-double"></div>
+                    
 
                     <div class="row">
                         <div class="col-sm-5">
@@ -614,7 +370,7 @@
                                 <div class="widget-header widget-header-flat">
                                     <h4 class="widget-title lighter">
                                         <i class="ace-icon fa fa-star orange"></i>
-                                        Popular Domains
+                                        Anuncios Populares
                                     </h4>
 
                                     <div class="widget-toolbar">
@@ -630,36 +386,44 @@
                                             <thead class="thin-border-bottom">
                                                 <tr>
                                                     <th>
-                                                        <i class="ace-icon fa fa-caret-right blue"></i>name
+                                                        <i class="ace-icon fa fa-caret-right blue"></i>Titulo
                                                     </th>
 
                                                     <th>
-                                                        <i class="ace-icon fa fa-caret-right blue"></i>price
+                                                        <i class="ace-icon fa fa-caret-right blue"></i>Precio
                                                     </th>
 
                                                     <th class="hidden-480">
-                                                        <i class="ace-icon fa fa-caret-right blue"></i>status
+                                                        <i class="ace-icon fa fa-caret-right blue"></i>Status
                                                     </th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
+                                                @if(isset($consulta))
+                                                @foreach($consulta as $con)
                                                 <tr>
-                                                    <td>internet.com</td>
+                                                    <td>{{ $con->anuncio }}</td>
 
                                                     <td>
-                                                        <small>
+<!--                                                        <small>
                                                             <s class="red">$29.99</s>
-                                                        </small>
-                                                        <b class="green">$19.99</b>
+                                                        </small>-->
+                                                        <b class="green">${{ $con->precio }}</b>
                                                     </td>
-
+                                                    @if($con->activo === 0)
                                                     <td class="hidden-480">
-                                                        <span class="label label-info arrowed-right arrowed-in">on sale</span>
+                                                        <span class="label label-info arrowed-right arrowed-in">Activo</span>
                                                     </td>
+                                                    @else
+                                                    <td class="hidden-480">
+                                                        <span class="label label-danger arrowed">Bloqueado</span>
+                                                    </td>
+                                                    @endif
                                                 </tr>
-
-                                                <tr>
+                                                @endforeach
+                                                @endif
+<!--                                                <tr>
                                                     <td>online.com</td>
 
                                                     <td>
@@ -710,7 +474,7 @@
                                                     <td class="hidden-480">
                                                         <span class="label label-warning arrowed arrowed-right">SOLD</span>
                                                     </td>
-                                                </tr>
+                                                </tr>-->
                                             </tbody>
                                         </table>
                                     </div><!-- /.widget-main -->
@@ -875,26 +639,33 @@
                                                     </li>
                                                 </ul>
                                             </div>
-
                                             <div id="member-tab" class="tab-pane">
                                                 <div class="clearfix">
+                                                    @if(isset($query))
+                                                    @foreach($query as $quer)
                                                     <div class="itemdiv memberdiv">
                                                         <div class="user">
-                                                            <img alt="Bob Doe's avatar" src="assets/images/avatars/user.jpg" />
+                                                            <img alt="Bob Doe's avatar" src="{{ asset('files/profile/'.$quer->Foto_perfil)}}" />
                                                         </div>
 
                                                         <div class="body">
                                                             <div class="name">
-                                                                <a href="#">Bob Doe</a>
+                                                                <a href="{{ URL::action('DashboardController@profile',['id'=>base64_encode($quer->id)]) }}">{{ $quer->username }}</a>
                                                             </div>
-
+                                                            <?php
+                                                            $hoy = date("Y-m-d");
+                                                            $fecha = explode(" ", $quer->created);
+                                                            $datetime12 = date_create($fecha[0]);
+                                                            $datetime22 = date_create($hoy);
+                                                            $interval = date_diff($datetime12, $datetime22);
+                                                            ?>
                                                             <div class="time">
                                                                 <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">20 min</span>
+                                                                <span class="green"><?= $interval->format('%R%a días') ?></span>
                                                             </div>
-
+                                                            @if($quer->banned === 2)
                                                             <div>
-                                                                <span class="label label-warning label-sm">pending</span>
+                                                                <span class="label label-warning label-sm">Pendiente</span>
 
                                                                 <div class="inline position-relative">
                                                                     <button class="btn btn-minier btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown" data-position="auto">
@@ -903,7 +674,7 @@
 
                                                                     <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
                                                                         <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
+                                                                            <a href="{{ URL::action('DashboardController@status',['id'=>base64_encode($quer->id), 'bann'=>base64_encode($quer->banned)]) }}" class="tooltip-success" data-rel="tooltip" title="Approve">
                                                                                 <span class="green">
                                                                                     <i class="ace-icon fa fa-check bigger-110"></i>
                                                                                 </span>
@@ -928,219 +699,230 @@
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
 
-                                                    <div class="itemdiv memberdiv">
-                                                        <div class="user">
-                                                            <img alt="Joe Doe's avatar" src="assets/images/avatars/avatar2.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Joe Doe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">1 hour</span>
-                                                            </div>
-
+                                                            @elseif($quer->banned === 1)
                                                             <div>
-                                                                <span class="label label-warning label-sm">pending</span>
-
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                        <i class="ace-icon fa fa-angle-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
-                                                                                <span class="green">
-                                                                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
-                                                                                <span class="orange">
-                                                                                    <i class="ace-icon fa fa-times bigger-110"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="ace-icon fa fa-trash-o bigger-110"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                            <span class="label label-danger label-sm">Bloqueado</span>
                                                             </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv memberdiv">
-                                                        <div class="user">
-                                                            <img alt="Jim Doe's avatar" src="assets/images/avatars/avatar.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Jim Doe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">2 hour</span>
-                                                            </div>
-
+                                                            @else
                                                             <div>
-                                                                <span class="label label-warning label-sm">pending</span>
-
-                                                                <div class="inline position-relative">
-                                                                    <button class="btn btn-minier btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                        <i class="ace-icon fa fa-angle-down icon-only bigger-120"></i>
-                                                                    </button>
-
-                                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
-                                                                                <span class="green">
-                                                                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
-                                                                                <span class="orange">
-                                                                                    <i class="ace-icon fa fa-times bigger-110"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-
-                                                                        <li>
-                                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                                <span class="red">
-                                                                                    <i class="ace-icon fa fa-trash-o bigger-110"></i>
-                                                                                </span>
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                            <span class="label label-success label-sm arrowed-in">Aprobado</span>
                                                             </div>
+                                                            @endif
                                                         </div>
                                                     </div>
-
-                                                    <div class="itemdiv memberdiv">
-                                                        <div class="user">
-                                                            <img alt="Alex Doe's avatar" src="assets/images/avatars/avatar5.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Alex Doe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">3 hour</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <span class="label label-danger label-sm">blocked</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv memberdiv">
-                                                        <div class="user">
-                                                            <img alt="Bob Doe's avatar" src="assets/images/avatars/avatar2.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Bob Doe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">6 hour</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <span class="label label-success label-sm arrowed-in">approved</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv memberdiv">
-                                                        <div class="user">
-                                                            <img alt="Susan's avatar" src="assets/images/avatars/avatar3.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Susan</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">yesterday</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <span class="label label-success label-sm arrowed-in">approved</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv memberdiv">
-                                                        <div class="user">
-                                                            <img alt="Phil Doe's avatar" src="assets/images/avatars/avatar4.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Phil Doe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">2 days ago</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <span class="label label-info label-sm arrowed-in arrowed-in-right">online</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv memberdiv">
-                                                        <div class="user">
-                                                            <img alt="Alexa Doe's avatar" src="assets/images/avatars/avatar1.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Alexa Doe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">3 days ago</span>
-                                                            </div>
-
-                                                            <div>
-                                                                <span class="label label-success label-sm arrowed-in">approved</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
+                                                    @endif
+                                                    <!--                                                    <div class="itemdiv memberdiv">
+                                                                                                            <div class="user">
+                                                                                                                <img alt="Joe Doe's avatar" src="assets/images/avatars/avatar2.png" />
+                                                                                                            </div>
+                                                    
+                                                                                                            <div class="body">
+                                                                                                                <div class="name">
+                                                                                                                    <a href="#">Joe Doe</a>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div class="time">
+                                                                                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                                                                                    <span class="green">1 hour</span>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div>
+                                                                                                                    <span class="label label-warning label-sm">pending</span>
+                                                    
+                                                                                                                    <div class="inline position-relative">
+                                                                                                                        <button class="btn btn-minier btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                                                                                            <i class="ace-icon fa fa-angle-down icon-only bigger-120"></i>
+                                                                                                                        </button>
+                                                    
+                                                                                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                                                                                            <li>
+                                                                                                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
+                                                                                                                                    <span class="green">
+                                                                                                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                                                                                                    </span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                    
+                                                                                                                            <li>
+                                                                                                                                <a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
+                                                                                                                                    <span class="orange">
+                                                                                                                                        <i class="ace-icon fa fa-times bigger-110"></i>
+                                                                                                                                    </span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                    
+                                                                                                                            <li>
+                                                                                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                                                                    <span class="red">
+                                                                                                                                        <i class="ace-icon fa fa-trash-o bigger-110"></i>
+                                                                                                                                    </span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                                                                                        </ul>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                    
+                                                                                                        <div class="itemdiv memberdiv">
+                                                                                                            <div class="user">
+                                                                                                                <img alt="Jim Doe's avatar" src="assets/images/avatars/avatar.png" />
+                                                                                                            </div>
+                                                    
+                                                                                                            <div class="body">
+                                                                                                                <div class="name">
+                                                                                                                    <a href="#">Jim Doe</a>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div class="time">
+                                                                                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                                                                                    <span class="green">2 hour</span>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div>
+                                                                                                                    <span class="label label-warning label-sm">pending</span>
+                                                    
+                                                                                                                    <div class="inline position-relative">
+                                                                                                                        <button class="btn btn-minier btn-yellow btn-no-border dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                                                                                            <i class="ace-icon fa fa-angle-down icon-only bigger-120"></i>
+                                                                                                                        </button>
+                                                    
+                                                                                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                                                                                            <li>
+                                                                                                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
+                                                                                                                                    <span class="green">
+                                                                                                                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                                                                                                                    </span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                    
+                                                                                                                            <li>
+                                                                                                                                <a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
+                                                                                                                                    <span class="orange">
+                                                                                                                                        <i class="ace-icon fa fa-times bigger-110"></i>
+                                                                                                                                    </span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                    
+                                                                                                                            <li>
+                                                                                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                                                                    <span class="red">
+                                                                                                                                        <i class="ace-icon fa fa-trash-o bigger-110"></i>
+                                                                                                                                    </span>
+                                                                                                                                </a>
+                                                                                                                            </li>
+                                                                                                                        </ul>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                    
+                                                                                                        <div class="itemdiv memberdiv">
+                                                                                                            <div class="user">
+                                                                                                                <img alt="Alex Doe's avatar" src="assets/images/avatars/avatar5.png" />
+                                                                                                            </div>
+                                                    
+                                                                                                            <div class="body">
+                                                                                                                <div class="name">
+                                                                                                                    <a href="#">Alex Doe</a>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div class="time">
+                                                                                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                                                                                    <span class="green">3 hour</span>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div>
+                                                                                                                    <span class="label label-danger label-sm">blocked</span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                    
+                                                                                                        <div class="itemdiv memberdiv">
+                                                                                                            <div class="user">
+                                                                                                                <img alt="Bob Doe's avatar" src="assets/images/avatars/avatar2.png" />
+                                                                                                            </div>
+                                                    
+                                                                                                            <div class="body">
+                                                                                                                <div class="name">
+                                                                                                                    <a href="#">Bob Doe</a>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div class="time">
+                                                                                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                                                                                    <span class="green">6 hour</span>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div>
+                                                                                                                    <span class="label label-success label-sm arrowed-in">approved</span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                    
+                                                                                                        <div class="itemdiv memberdiv">
+                                                                                                            <div class="user">
+                                                                                                                <img alt="Susan's avatar" src="assets/images/avatars/avatar3.png" />
+                                                                                                            </div>
+                                                    
+                                                                                                            <div class="body">
+                                                                                                                <div class="name">
+                                                                                                                    <a href="#">Susan</a>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div class="time">
+                                                                                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                                                                                    <span class="green">yesterday</span>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div>
+                                                                                                                    <span class="label label-success label-sm arrowed-in">approved</span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                    
+                                                                                                        <div class="itemdiv memberdiv">
+                                                                                                            <div class="user">
+                                                                                                                <img alt="Phil Doe's avatar" src="assets/images/avatars/avatar4.png" />
+                                                                                                            </div>
+                                                    
+                                                                                                            <div class="body">
+                                                                                                                <div class="name">
+                                                                                                                    <a href="#">Phil Doe</a>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div class="time">
+                                                                                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                                                                                    <span class="green">2 days ago</span>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div>
+                                                                                                                    <span class="label label-info label-sm arrowed-in arrowed-in-right">online</span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                    
+                                                                                                        <div class="itemdiv memberdiv">
+                                                                                                            <div class="user">
+                                                                                                                <img alt="Alexa Doe's avatar" src="assets/images/avatars/avatar1.png" />
+                                                                                                            </div>
+                                                    
+                                                                                                            <div class="body">
+                                                                                                                <div class="name">
+                                                                                                                    <a href="#">Alexa Doe</a>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div class="time">
+                                                                                                                    <i class="ace-icon fa fa-clock-o"></i>
+                                                                                                                    <span class="green">3 days ago</span>
+                                                                                                                </div>
+                                                    
+                                                                                                                <div>
+                                                                                                                    <span class="label label-success label-sm arrowed-in">approved</span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>-->
                                                 </div>
 
                                                 <div class="space-4"></div>
@@ -1149,7 +931,7 @@
                                                     <i class="ace-icon fa fa-users fa-2x green middle"></i>
 
                                                     &nbsp;
-                                                    <a href="#" class="btn btn-sm btn-white btn-info">
+                                                    <a href="{{ URL::action('DashboardController@info') }}" class="btn btn-sm btn-white btn-info">
                                                         See all members &nbsp;
                                                         <i class="ace-icon fa fa-arrow-right"></i>
                                                     </a>
@@ -1160,163 +942,7 @@
 
                                             <div id="comment-tab" class="tab-pane">
                                                 <div class="comments">
-                                                    <div class="itemdiv commentdiv">
-                                                        <div class="user">
-                                                            <img alt="Bob Doe's Avatar" src="assets/images/avatars/avatar.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Bob Doe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="green">6 min</span>
-                                                            </div>
-
-                                                            <div class="text">
-                                                                <i class="ace-icon fa fa-quote-left"></i>
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools">
-                                                            <div class="inline position-relative">
-                                                                <button class="btn btn-minier bigger btn-yellow dropdown-toggle" data-toggle="dropdown">
-                                                                    <i class="ace-icon fa fa-angle-down icon-only bigger-120"></i>
-                                                                </button>
-
-                                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                    <li>
-                                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Approve">
-                                                                            <span class="green">
-                                                                                <i class="ace-icon fa fa-check bigger-110"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-
-                                                                    <li>
-                                                                        <a href="#" class="tooltip-warning" data-rel="tooltip" title="Reject">
-                                                                            <span class="orange">
-                                                                                <i class="ace-icon fa fa-times bigger-110"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-
-                                                                    <li>
-                                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                            <span class="red">
-                                                                                <i class="ace-icon fa fa-trash-o bigger-110"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv commentdiv">
-                                                        <div class="user">
-                                                            <img alt="Jennifer's Avatar" src="assets/images/avatars/avatar1.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Jennifer</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="blue">15 min</span>
-                                                            </div>
-
-                                                            <div class="text">
-                                                                <i class="ace-icon fa fa-quote-left"></i>
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools">
-                                                            <div class="action-buttons bigger-125">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-pencil blue"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-trash-o red"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv commentdiv">
-                                                        <div class="user">
-                                                            <img alt="Joe's Avatar" src="assets/images/avatars/avatar2.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Joe</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="orange">22 min</span>
-                                                            </div>
-
-                                                            <div class="text">
-                                                                <i class="ace-icon fa fa-quote-left"></i>
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools">
-                                                            <div class="action-buttons bigger-125">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-pencil blue"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-trash-o red"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="itemdiv commentdiv">
-                                                        <div class="user">
-                                                            <img alt="Rita's Avatar" src="assets/images/avatars/avatar3.png" />
-                                                        </div>
-
-                                                        <div class="body">
-                                                            <div class="name">
-                                                                <a href="#">Rita</a>
-                                                            </div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                                <span class="red">50 min</span>
-                                                            </div>
-
-                                                            <div class="text">
-                                                                <i class="ace-icon fa fa-quote-left"></i>
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo massa sed ipsum porttitor facilisis &hellip;
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="tools">
-                                                            <div class="action-buttons bigger-125">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-pencil blue"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-trash-o red"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <div class="fb-comments" data-href="http://localhost:8000/dashboard" data-numposts="5"></div>
                                                 </div>
 
                                                 <div class="hr hr8"></div>
@@ -1490,6 +1116,269 @@
                                 </div><!-- /.widget-body -->
                             </div><!-- /.widget-box -->
                         </div><!-- /.col -->
+                    </div><!-- /.row -->
+                    
+                    <div class="page-header">
+                        <!--  PRINT MESSAGE OF ADD CREATED SUCCESSFUL
+                        @ if($ message == 'store')
+                        <div class="alert alert-block alert-success">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+                            <i class="ace-icon fa fa-check green"></i>
+                            <strong class="green">
+                                Anuncio creado exitosamente.                        
+                            </strong>                        
+                        </div>
+                        @ endif-->
+                        @if(Session::has('message'))
+                        <div class="alert alert-block alert-success">
+                            <button type="button" class="close" data-dismiss="alert">
+                                <i class="ace-icon fa fa-times"></i>
+                            </button>
+                            <i class="ace-icon fa fa-check green"></i>
+                            <strong class="green">
+                                {{Session::get('message')}}                        
+                            </strong>                        
+                        </div>
+                        @endif
+
+                        <h1>
+                            Anuncios publicados
+                            <small>
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                                overview &amp; stats
+                            </small>
+                        </h1>
+                    </div><!-- /.page-header -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table id="simple-table" class="table  table-bordered table-hover">
+                                <thead>
+                                    <tr>
+<!--                                        <th class="center">
+                                            <label class="pos-rel">
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
+                                        <th class="detail-col">Details</th>-->
+                                        <th>Anuncio</th>
+                                        <th>Descripción</th>
+                                        <th class="hidden-480">Clicks</th>
+
+                                        <th>
+                                            <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                            Publicado
+                                        </th>
+                                        <th class="hidden-480">Status</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if(isset($anuncios))
+                                    @foreach($anuncios as $anun)
+                                    <tr>
+<!--                                        <td class="center">
+                                            <label class="pos-rel">
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </td>
+
+                                        <td class="center">
+                                            <div class="action-buttons">
+                                                <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
+                                                    <i class="ace-icon fa fa-angle-double-down"></i>
+                                                    <span class="sr-only">Details</span>
+                                                </a>
+                                            </div>
+                                        </td>-->
+
+                                        <td style="width: 20%">
+                                            <a href="#">{{$anun->Anuncio}}</a>
+                                        </td>
+                                        <td style="width: 20%">{{$anun->Descripcion}}</td>
+                                        <td class="hidden-480">{{$anun->precio}}</td>
+                                        <td style="width: 20%">{{$anun->Fecha}}</td>
+
+                                        <td class="hidden-480">
+                                <center><span class="label label-sm label-warning">Expiring</span></center>
+                                        </td>
+
+                                        <td>
+                                            <div class="hidden-sm hidden-xs btn-group">
+<!--                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>-->
+
+                                                <!--<button class="btn btn-xs btn-info">-->
+                                                    <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
+                                                {!!link_to_route('dashboard.edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
+                                                <!--</button>-->
+
+                                                {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}
+                                                {!!Form::submit('Eliminar',['class'=>'btn btn-xs btn-danger','type'=>'button'])!!}
+                                                {!!Form::close()!!}
+                                                <!--                                                <button class="btn btn-xs btn-danger ">
+                                                                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                                                </button>-->
+
+<!--                                                <button class="btn btn-xs btn-warning">
+                                                    <i class="ace-icon fa fa-flag bigger-120"></i>
+                                                </button>-->
+                                            </div>
+
+                                            <div class="hidden-md hidden-lg">
+                                                <div class="inline pos-rel">
+                                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                    </button>
+
+                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                        <li>
+                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                                <span class="blue">
+                                                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                <span class="green">
+                                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <span class="red">
+                                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+<!--                                    <tr class="detail-row">
+                                        <td colspan="8">
+                                            <div class="table-detail">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-2">
+                                                        <div class="text-center">
+                                                            <img height="150" class="thumbnail inline no-margin-bottom" alt="Domain Owner's Avatar" src="assets/images/avatars/profile-pic.jpg" />
+                                                            <br />
+                                                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                                                <div class="inline position-relative">
+                                                                    <a class="user-title-label" href="#">
+                                                                        <i class="ace-icon fa fa-circle light-green"></i>
+                                                                        &nbsp;
+                                                                        <span class="white">Alex M. Doe</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-7">
+                                                        <div class="space visible-xs"></div>
+
+                                                        <div class="profile-user-info profile-user-info-striped">
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> Username </div>
+
+                                                                <div class="profile-info-value">
+                                                                    <span>alexdoe</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> Location </div>
+
+                                                                <div class="profile-info-value">
+                                                                    <i class="fa fa-map-marker light-orange bigger-110"></i>
+                                                                    <span>Netherlands, Amsterdam</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> Age </div>
+
+                                                                <div class="profile-info-value">
+                                                                    <span>38</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> Joined </div>
+
+                                                                <div class="profile-info-value">
+                                                                    <span>2010/06/20</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> Last Online </div>
+
+                                                                <div class="profile-info-value">
+                                                                    <span>3 hours ago</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="profile-info-row">
+                                                                <div class="profile-info-name"> About Me </div>
+
+                                                                <div class="profile-info-value">
+                                                                    <span>Bio</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-xs-12 col-sm-3">
+                                                        <div class="space visible-xs"></div>
+                                                        <h4 class="header blue lighter less-margin">Send a message to Alex</h4>
+
+                                                        <div class="space-6"></div>
+
+                                                        <form>
+                                                            <fieldset>
+                                                                <textarea class="width-100" resize="none" placeholder="Type something…"></textarea>
+                                                            </fieldset>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="clearfix">
+                                                                <label class="pull-left">
+                                                                    <input type="checkbox" class="ace" />
+                                                                    <span class="lbl"> Email me a copy</span>
+                                                                </label>
+
+                                                                <button class="pull-right btn btn-sm btn-primary btn-white btn-round" type="button">
+                                                                    Submit
+                                                                    <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>-->
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div><!-- /.span -->
+                        {{ $anuncios->render() }}
+
+                        @endif
                     </div><!-- /.row -->
 
                     <!-- PAGE CONTENT ENDS -->

@@ -52,9 +52,9 @@ Route::resource('dashboard','DashboardController');
 //Route::name('info')->get('dashboard/infousers','DashboardController@info');
 Route::get('municipio/{id}','DashboardController@getMunicipios');
 
-Route::name('info')->get('desahboard/info', 'DashboardController@info');
-
-
+Route::name('info')->get('deshboard/info', 'DashboardController@info');
+Route::name('status')->get('dishboard/status/{id}/{bann}', 'DashboardController@status');
+Route::get('deshboard/profile/{id}','DashboardController@profile');
 Route::name('redexcel')->get('redexcel','ExcelController@index');
 
 Route::name('login')->get('/login','LoginController@login');

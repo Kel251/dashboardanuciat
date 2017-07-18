@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estados extends Model {
     
+    protected $primaryKey = 'Id_est';
     protected $table = 'cat_estados';
     public $timestamps = false;
 

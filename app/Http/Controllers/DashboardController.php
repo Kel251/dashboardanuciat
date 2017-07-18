@@ -16,12 +16,24 @@ use Illuminate\Support\Facades\Redirect;
 class DashboardController extends Controller {
 
     public function index(Request $request) {
+        $count = DB::table('cat_suscripcion')
+                ->count();
+        $count2 = DB::table('det_comentarios')
+                ->count();
+        $count3 = Anuncio::count();
+        $percent = explode('.',$count2/$count3);
+        $consulta = DB::select("SELECT a.anuncio, a.precio, a.activo FROM det_comentarios c INNER JOIN det_anuncios a ON c.id_anun=a.id_anun GROUP BY c.id_anun,a.anuncio,a.precio,a.activo ORDER BY COUNT(c.id_coment) DESC LIMIT 5");
+        
+        $query = DB::select("SELECT id,username, banned, Tipo_user,created, Foto_perfil FROM users ORDER BY created DESC LIMIT 12");
+        
+        $users = \Anunciate\Users::where('Tipo_user','<>',3)->count();
+        
         //dd($request->get('name'));
 //        $anuncios = Anuncio::All();
 //        $anuncios = DB::table('det_anuncios')->simplePaginate(10);
         //$anuncios = \Anunciate\Anuncio::paginate(10);
         $anuncios = Anuncio::name($request->get('name'))->paginate(10);
-        return view("dashboard/content", compact('anuncios'));
+        return view("dashboard/content", compact('anuncios','count','count2','count3','percent','consulta','query','users'));
     }
 
     public function create() {
@@ -114,13 +126,48 @@ class DashboardController extends Controller {
 //       return Redirect::to('/dashboard');
     }
     
-    public function status($id, Request $request) {
-        $anun = \Anunciate\User::find($id);
-        $anun->fill($request->all());
-        $anun->save();
-
+    public function status($id,$bann) {
+        $idu = base64_decode($id);
+        $banned = base64_decode($bann);
+        if($banned == 1){
+        DB::table('users')
+            ->where('id', $idu)
+            ->update(['banned' => 0]);
+        }elseif($banned == 2){
+            DB::table('users')
+            ->where('id', $idu)
+            ->update(['banned' => 0]);
+            return Redirect::to('/dashboard');
+        }else{
+            DB::table('users')
+            ->where('id', $idu)
+            ->update(['banned' => 1]);
+        }
         //Session::flash('message', 'Usuario modificado correctamente.');
-        return Redirect::to('/dashboard/infouser');
+        return Redirect::to('/deshboard/info');
+    }
+    
+    public function profile(Request $request, $id) {
+        $idu = base64_decode($id);        
+        
+        $user = \Anunciate\User::find($idu);
+        $id_est = $user->Id_est;
+        $id_mun = $user->Id_mun;
+        $estado = Estados::find($id_est);
+        $mun = Municipios::find($id_mun);
+        
+        $anuncios = DB::table('det_anuncios')
+                     ->select('*')
+                     ->where('id', '=', $idu)->paginate(10);
+        
+        $imagenes = DB::table('det_anuncios')
+                ->join('det_imagenes','det_imagenes.Id_anun','=','det_anuncios.Id_anun')
+                ->select('det_imagenes.nom_img')
+                ->where('det_anuncios.id','=',$idu)
+                ->get();
+
+        
+        return view('dashboard/profile',compact('user','estado','mun','anuncios','imagenes'));
     }
 
 }

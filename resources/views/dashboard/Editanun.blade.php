@@ -149,7 +149,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9"><!--idform-field-select-3-->
-                            <img src="{'files/.'$arc}">
+                            
                         </div>
                     </div>
 
@@ -171,7 +171,7 @@
                     </div>
 
                     {!!Form::close()!!}
-
+<!--
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>
@@ -343,7 +343,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- /.span -->
+                            </div> /.span 
 
                             <div class="col-xs-12 col-sm-4">
                                 <div class="widget-box">
@@ -433,7 +433,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- /.span -->
+                            </div> /.span 
 
                             <div class="col-xs-12 col-sm-4">
                                 <div class="widget-box">
@@ -643,7 +643,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <span class="bigger-110">Multiple</span>
-                                                    </div><!-- /.span -->
+                                                    </div> /.span 
 
                                                     <div class="col-sm-6">
                                                         <span class="pull-right inline">
@@ -663,7 +663,7 @@
                                                                 </span>
                                                             </span>
                                                         </span>
-                                                    </div><!-- /.span -->
+                                                    </div> /.span 
                                                 </div>
 
                                                 <div class="space-2"></div>
@@ -724,8 +724,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div><!-- /.span -->
-                        </div><!-- /.row -->
+                            </div> /.span 
+                        </div> /.row 
 
                         <div class="space-24"></div>
 
@@ -816,7 +816,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><!-- /.row -->
+                        </div> /.row 
 
                         <hr />
                         <div class="form-group">
@@ -1224,7 +1224,7 @@
                                 <div class="widget-body">
                                     <div class="widget-main no-padding">
                                         <form>
-                                            <!-- <legend>Form</legend> -->
+                                             <legend>Form</legend> 
                                             <fieldset>
                                                 <label>Label name</label>
 
@@ -1453,7 +1453,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div><!-- PAGE CONTENT ENDS -->
+                    </div> PAGE CONTENT ENDS -->
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.page-content -->

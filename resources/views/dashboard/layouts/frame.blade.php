@@ -44,7 +44,7 @@
 		<![endif]-->
 	</head>
 
-	<body class="no-skin">	
+	<body class="no-skin" onload="initialfb()">	
             @include('dashboard.layouts.header')
 		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
@@ -64,7 +64,7 @@
 		<!-- basic scripts -->
 
 		<!--[if !IE]> -->
-                {!!Html::script('assets/js/jquery-2.1.4.min.js')!!}		
+                {!!Html::script('assets/js/jquery-2.1.4.min.js')!!}	
 
 		<!-- <![endif]-->
 
@@ -131,7 +131,7 @@
 			
 			  var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
 			  var data = [
-				{ label: "social networks",  data: 38.7, color: "#68BC31"},
+				{ label: "Facebook",  data: 38.7, color: "#68BC31"},
 				{ label: "search engines",  data: 24.5, color: "#2091CF"},
 				{ label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
 				{ label: "direct traffic",  data: 18.6, color: "#DA5430"},
