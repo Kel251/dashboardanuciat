@@ -14,7 +14,7 @@
             <a href="{{ URL::action('DashboardController@index') }}" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    Ace Admin
+                    Administración - Anunciate!
                 </small>
             </a>
         </div>
@@ -275,13 +275,13 @@
                         </li>
                     </ul>
                 </li>
-
+                @if (Auth::guest() === FALSE)
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="{{asset('images/avatars/user.jpg')}}" alt="Jason's Photo" />
+                        <img class="nav-user-photo" src="{{asset('files/profile/'. Auth::user()->Foto_perfil) }}" alt="Jason's Photo" />
                         <span class="user-info">
-                            <small>Welcome,</small>
-                            Jason
+                            <small>Hola!!</small>
+                             {{ Auth::user()->name }}
                         </span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -303,14 +303,21 @@
                         </li>
 
                         <li class="divider"></li>
-
+                        
                         <li>
-                            <a href="#">
+                            <a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                Logout
+                                Salir
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                         </li>
-                    </ul>
+                        
+                            
+                        
+                    </ul>@endif
                 </li>
             </ul>
         </div>

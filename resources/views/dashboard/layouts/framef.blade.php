@@ -77,7 +77,7 @@
 
         <!--[if !IE]> -->
         {!!Html::script('js/jquery-2.1.4.min.js')!!}
-        
+
         {!!Html::script('js/dropdown.js')!!}
 
         <!-- <![endif]-->
@@ -555,5 +555,44 @@
 
             });
         </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#estados').on('change', function () {
+
+                    var uri = "{{ route('get-munis') }}";
+
+                    var datosjquery = {
+                        id_estado: $(this).val(),
+                        _method: "post",
+                        _token: "{{ csrf_token() }}"
+                    };
+
+                    $('#municipios').empty();
+
+                    if (datosjquery.id_estado === 0) {
+                        $('#municipios').append('<option value="0">-- Seleciona un municipio --</option>');
+                    } else {
+                        $.post(uri, datosjquery, function (datoslaravel, textStatus, xhr) {
+
+                            $.each(datoslaravel, function (index, val) {
+                                $('#municipios').append('<option value="' + val.Id_mun + '">' + val.Nom_mun + '</option>');
+                            });
+
+                        }, 'json');
+                    }
+                });
+            });
+        </script>
+        
+        <script type="text/javascript">
+            $(function () {
+                $("img").on("error", function () {
+                    $(this).unbind("error").attr("src", "{{ asset('images/error.jpg') }}");
+                });
+            });
+
+        </script>
+
     </body>
 </html>

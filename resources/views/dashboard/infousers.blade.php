@@ -6,13 +6,10 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Home</a>
+                    <a href="{{ URL::action('DashboardController@index') }}">Inicio</a>
                 </li>
 
-                <li>
-                    <a href="#">Tables</a>
-                </li>
-                <li class="active">Simple &amp; Dynamic</li>
+                <li class="active">Información de Usuarios</li>
             </ul><!-- /.breadcrumb -->
 
             <div class="nav-search" id="nav-search">
@@ -1096,64 +1093,70 @@
                     <!--<h3 class="header smaller lighter blue">jQuery dataTables</h3>-->
 
                     <div class="clearfix">
-                        <div class="pull-right tableTools-container"></div>
+                        <div class="pull-right tableTools-container">
+                            <div class="dt-buttons btn-overlap btn-group" > <a href="{{ route('excelusers') }}" class="dt-button buttons-collection buttons-colvis btn btn-white btn-primary btn-bold">
+                                    <img src="{{ asset('images/excel1.png') }}" height="20px" width="20px" style="float: right;">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-header">
-                        Results for "Latest Registered Domains"
+                        Usuarios registrados en el sistema
                     </div>
 
                     <!-- div.table-responsive -->
 
                     <!-- div.dataTables_borderWrap -->
                     <div>
-                        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-                            <thead>
+                        <form>
+                            <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+    <!--                                    <th class="center">
+                                            <label class="pos-rel">
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>-->
+                                        <th>Foto</th>
+                                        <th>Nombre Admin</th>
+                                        <th>Price</th>
+                                        <th class="hidden-480">Clicks</th>
+
+                                        <th>
+                                            <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                            Update
+                                        </th>
+                                        <th class="hidden-480">Status</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody><p id="demo"></p>
+                                @if(isset($users))
+                                @foreach($users as $val)
                                 <tr>
-<!--                                    <th class="center">
+    <!--                                <td class="center">
                                         <label class="pos-rel">
-                                            <input type="checkbox" class="ace" />
+                                            <input type="checkbox" class="ace"/>
                                             <span class="lbl"></span>
                                         </label>
-                                    </th>-->
-                                    <th>Foto</th>
-                                    <th>Nombre Admin</th>
-                                    <th>Price</th>
-                                    <th class="hidden-480">Clicks</th>
-
-                                    <th>
-                                        <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                        Update
-                                    </th>
-                                    <th class="hidden-480">Status</th>
-
-                                    <th></th>
-                                </tr>
-                            </thead>
-
-                            <tbody><p id="demo"></p>
-                            @if(isset($users))
-                            @foreach($users as $val)
-                            <tr>
-<!--                                <td class="center">
-                                    <label class="pos-rel">
-                                        <input type="checkbox" class="ace"/>
-                                        <span class="lbl"></span>
-                                    </label>
-                                </td>-->
-                                <td>
-                            <center>
-                                @if($val->Foto_perfil != '') <img src="{{ asset('files/profile/'.$val->Foto_perfil) }}" height="42" width="42" />
-                                @else
-                                <img src="{{ asset('files/profile/sombra.png') }}" height="42" width="42" />
-                                @endif
-                            </center>
+                                    </td>-->
+                                    <td>
+                                <center>
+                                    @if($val->Foto_perfil != '') <img src="{{ asset('files/profile/'.$val->Foto_perfil) }}" height="42" width="42" />
+                                    @else
+                                    <img src="{{ asset('files/profile/sombra.png') }}" height="42" width="42" />
+                                    @endif
+                                </center>
                                 </td>
                                 <td>
                                     <a href="#">{{ $val->username }}</a>
                                 </td>
                                 <td>$45</td>
                                 <td class="hidden-480">3,330</td>
-                                <td>Feb 12</td>
+                                <td>Feb 12ww</td>
 
                                 @if ($val->banned === 0)
                                 <td class="hidden-480">
@@ -1171,33 +1174,13 @@
                                             <i class="ace-icon fa fa-folder-o bigger-130"></i>
                                         </a>
 
-                                        <a class="green" href="#" title="Pagos">
+                                        <a class="green" href="#modal-table" role="button" data-toggle="modal" title="Ver pagos" onclick="pagos({{ $val->id }})">
                                             <i class="ace-icon glyphicon glyphicon-usd bigger-130"></i>
                                         </a>
 
-                                        <a class="red" href="#" title="Pendientes">
+                                        <a class="red" href="{{ URL::action('DashboardController@pendientes',['id'=>base64_encode($val->id)]) }}" role="button" data-toggle="modal" title="Ver pendientes">
                                             <i class="ace-icon glyphicon glyphicon-time bigger-130"></i>
                                         </a>
-                                        <script type="text/javascript">
-                                            function checkbox() {
-                                                var x = document.getElementsByClassName('status').checked;
-                                                document.getElementById("demo").innerHTML = x[0];
-                                            }
-                                            function checkbox2() {
-
-                                                var ids;
-
-                                                ids = $('input[type=checkbox]:checked').map(function () {
-                                                    return $(this).attr('id');
-                                                }).get();
-
-                                                alert('IDS: ' + ids.join(', '));
-
-                                                $.ajax({
-                                                    url:
-                                                });
-                                            }
-                                        </script>
 
                                         @if ($val->banned === 1)
                                         <a href="{{ URL::action('DashboardController@status',['id'=>base64_encode($val->id),'bann'=>base64_encode($val->banned)]) }}" class='btn btn-xs btn-success'>Activar</a>
@@ -1205,10 +1188,13 @@
                                         <a href="{{ URL::action('DashboardController@status',['id'=>base64_encode($val->id),'bann'=>base64_encode($val->banned)]) }}" class='btn btn-xs btn-danger'>Descativar</a>
                                         @endif
                                         <!--                                            @if ($val->banned === 0)
-                                                                                    {!!link_to_route('dashboard.edit', $title = 'Activar', $parameters = [$val->id], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
+                                                                                    {!!link_to_route('edit', $title = 'Activar', $parameters = [$val->id], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
                                                                                     @else
-                                                                                    {!!link_to_route('dashboard.edit', $title = 'Bann', $parameters = [$val->id], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-danger']);!!}
+                                                                                    {!!link_to_route('edit', $title = 'Bann', $parameters = [$val->id], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-danger']);!!}
                                                                                     @endif-->
+                                        <a class="blue" href="{{ URL::action('ExcelController@pagos',['id'=>$val->id]) }}" title="Ver detalle">
+                                                <img src="{{ asset('images/excel1.png') }}" height="20px" width="20px" style="float: right;">
+                                        </a>
                                     </div>
 
                                     <div class="hidden-md hidden-lg">
@@ -1248,14 +1234,69 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
-                            @endforeach
-                            @endif
-                            </tbody>
-                        </table>
+                                </tr>
+                                @endforeach
+                                @endif
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                 </div>
             </div>
+<!--            <div>
+                <h2>Register form</h2>
+                <button type="button" id="getRequest">Get request</button>
+            </div
+            <div id="getRequestData">
+                txt
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <h3>Municipios</h3>
+                    <select class="form-control selectpicker" id="municipios">
+                        <option value="0">-- Seleciona un municipio --</option>
+
+                    </select>
+                </div>
+            </div>-->
+            <script type="text/javascript">
+                function checkbox() {
+                var x = document.getElementsByClassName('status').checked;
+                document.getElementById("demo").innerHTML = x[0];
+                }
+                function checkbox2() {
+
+                var ids;
+                ids = $('input[type=checkbox]:checked').map(function () {
+                return $(this).attr('id');
+                }).get();
+                alert('IDS: ' + ids.join(', '));
+                $.ajax({
+                url:
+                });
+                }
+            </script>
+
+            <script type="text/javascript">
+
+                $("#BtnEnviar").click(function (e) {
+                e.preventDefault();
+                var nombre = $('#txtNombre').val();
+                $.ajax({
+                type: "post",
+                        url: "mi_ruta_post",
+                        data: {
+                        nombre: nombre
+                        }, success: function (msg) {
+                alert("Se ha realizado el POST con exito " + msg);
+                }
+                });
+                });
+            </script>
+            <h4 class="pink">
+                <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+                <a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a>
+            </h4>
 
             <div id="modal-table" class="modal fade" tabindex="-1">
                 <div class="modal-dialog">
@@ -1265,7 +1306,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                     <span class="white">&times;</span>
                                 </button>
-                                Results for "Latest Registered Domains
+                                Historial de pagos
                             </div>
                         </div>
 
@@ -1273,62 +1314,25 @@
                             <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
                                 <thead>
                                     <tr>
-                                        <th>Domain</th>
-                                        <th>Price</th>
-                                        <th>Clicks</th>
-
+                                        <th>#</th>
+                                        <th>Tipo</th>
+                                        <th>Monto</th>
                                         <th>
                                             <i class="ace-icon fa fa-clock-o bigger-110"></i>
-                                            Update
+                                            Activación
+                                        </th>
+                                        <th>
+                                            <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                            Expira
+                                        </th>
+                                        <th>
+                                            Status
                                         </th>
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <a href="#">ace.com</a>
-                                        </td>
-                                        <td>$45</td>
-                                        <td>3,330</td>
-                                        <td>Feb 12</td>
-                                    </tr>
+                                <tbody id="pagos">
 
-                                    <tr>
-                                        <td>
-                                            <a href="#">base.com</a>
-                                        </td>
-                                        <td>$35</td>
-                                        <td>2,595</td>
-                                        <td>Feb 18</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <a href="#">max.com</a>
-                                        </td>
-                                        <td>$60</td>
-                                        <td>4,400</td>
-                                        <td>Mar 11</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <a href="#">best.com</a>
-                                        </td>
-                                        <td>$75</td>
-                                        <td>6,500</td>
-                                        <td>Apr 03</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <a href="#">pro.com</a>
-                                        </td>
-                                        <td>$55</td>
-                                        <td>4,250</td>
-                                        <td>Jan 21</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -1336,34 +1340,35 @@
                         <div class="modal-footer no-margin-top">
                             <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
                                 <i class="ace-icon fa fa-times"></i>
-                                Close
+                                Cerrar
                             </button>
 
-                            <ul class="pagination pull-right no-margin">
-                                <li class="prev disabled">
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-angle-double-left"></i>
-                                    </a>
-                                </li>
-
-                                <li class="active">
-                                    <a href="#">1</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-
-                                <li class="next">
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-angle-double-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                            <div id="total" ></div>
+                            <!--                            <ul class="pagination pull-right no-margin">
+                                                            <li class="prev disabled">
+                                                                <a href="#">
+                                                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                                                </a>
+                                                            </li>
+                            
+                                                            <li class="active">
+                                                                <a href="#">1</a>
+                                                            </li>
+                            
+                                                            <li>
+                                                                <a href="#">2</a>
+                                                            </li>
+                            
+                                                            <li>
+                                                                <a href="#">3</a>
+                                                            </li>
+                            
+                                                            <li class="next">
+                                                                <a href="#">
+                                                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>-->
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

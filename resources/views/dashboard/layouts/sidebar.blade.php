@@ -1,7 +1,7 @@
 <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
     <script type="text/javascript">
         try {
-            ace.settings.loadState('sidebar')
+            ace.settings.loadState('sidebar');
         } catch (e) {
         }
     </script>
@@ -20,9 +20,9 @@
                 <img src="{{ asset('images/excel.png') }}" height="30px" width="30px">
             </a>
 
-            <button class="btn btn-warning">
+            <a href="" class="btn btn-warning">
                 <i class="ace-icon fa fa-users"></i>
-            </button>
+            </a>
 
             <button class="btn btn-danger">
                 <i class="ace-icon fa fa-cogs"></i>

@@ -31,4 +31,20 @@
 			<p>Not a registered user yet? <strong><a href="#" class="blue-text">Sign up now!</a></strong></p>
 
 		</div>
+                
+                <div>
+        <h2>Register form</h2>
+        <button type="button" id="getRequest">Get request</button>
+    </div>
+    {!!Html::script('assets/js/jquery-2.1.4.min.js')!!}
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            $("#getRequest").click(function(){
+                //alert($(this).text());
+                $.get('vistabluereset/getRequest',function(data){
+                    console.log(data);
+                });
+            });
+        });
+    </script>
 @endsection

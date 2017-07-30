@@ -6,11 +6,11 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Home</a>
+                    <a href="{{ URL::action('DashboardController@index') }}">Inicio</a>
                 </li>
 
                 <li>
-                    <a href="#">More Pages</a>
+                    <a href="{{ URL::action('DashboardController@info') }}">Usuarios del website</a>
                 </li>
                 <li class="active">Perfil de usuario</li>
             </ul><!-- /.breadcrumb -->
@@ -794,6 +794,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                 
+                                                <div id='googleMap'></div>
+                                                <img src="{{ asset('C:/Users/lgeo_/Pictures/9h8lb9.jpg') }}">
+                                                <input type="hidden" value="<?php foreach($ubicacion as $ub){ echo $ub->Lat; }?>" id="lat">
+                                                <input type="hidden" value="<?php foreach($ubicacion as $ub){ echo $ub->Lng; }?>" id="long">
+                        
+
+                        
                                             </div>
 
                                             <div class="col-xs-12 col-sm-6">
@@ -801,7 +809,7 @@
                                                     <div class="widget-header widget-header-small header-color-blue2">
                                                         <h4 class="widget-title smaller">
                                                             <i class="ace-icon fa fa-lightbulb-o bigger-120"></i>
-                                                            My Skills
+                                                            Actividad en el sitio
                                                         </h4>
                                                     </div>
 
@@ -809,12 +817,12 @@
                                                         <div class="widget-main padding-16">
                                                             <div class="clearfix">
                                                                 <div class="grid3 center">
-                                                                    <div class="easy-pie-chart percentage" data-percent="45" data-color="#CA5952">
+                                                                    <div class="easy-pie-chart percentage" data-percent="55" data-color="#CA5952">
                                                                         <span class="percent">45</span>%
                                                                     </div>
 
                                                                     <div class="space-2"></div>
-                                                                    Graphic Design
+                                                                    Anuncios Publicados
                                                                 </div>
 
                                                                 <div class="grid3 center">
@@ -823,7 +831,7 @@
                                                                     </div>
 
                                                                     <div class="space-2"></div>
-                                                                    HTML5 & CSS3
+                                                                    Interacción entre anuncios
                                                                 </div>
 
                                                                 <div class="grid3 center">
@@ -832,13 +840,13 @@
                                                                     </div>
 
                                                                     <div class="space-2"></div>
-                                                                    Javascript/jQuery
+                                                                    Mensajes envíados
                                                                 </div>
                                                             </div>
 
                                                             <div class="hr hr-16"></div>
 
-                                                            <div class="profile-skills">
+<!--                                                            <div class="profile-skills">
                                                                 <div class="progress">
                                                                     <div class="progress-bar" style="width:80%">
                                                                         <span class="pull-left">HTML5 & CSS3</span>
@@ -877,16 +885,17 @@
                                                                         <span class="pull-right">38%</span>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div>-->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div><!-- /#home -->
 
                                     <div id="feed" class="tab-pane">
-                                        <div class="profile-feed row">
+                                       <!-- <div class="profile-feed row">
                                             <div class="col-sm-6">
                                                 <div class="profile-activity clearfix">
                                                     <div>
@@ -1006,7 +1015,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            </div><!-- /.col -->
+                                            </div><!-- /.col --
 
                                             <div class="col-sm-6">
                                                 <div class="profile-activity clearfix">
@@ -1124,8 +1133,8 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            </div><!-- /.col -->
-                                        </div><!-- /.row -->
+                                            </div><!-- /.col --
+                                        </div><!-- /.row 
 
                                         <div class="space-12"></div>
 
@@ -1149,7 +1158,7 @@
                                                                     <span class="lbl"></span>
                                                                 </label>
                                                             </th>
-                                                            <th class="detail-col">Details</th>-->
+                                                            <th class="detail-col">Details</th>--
                                                             <th>Anuncio</th>
                                                             <th>Descripción</th>
                                                             <th class="hidden-480">Clicks</th>
@@ -1182,7 +1191,7 @@
                                                                         <span class="sr-only">Details</span>
                                                                     </a>
                                                                 </div>
-                                                            </td>-->
+                                                            </td>--
 
                                                             <td style="width: 20%">
                                                                 <a href="#">{{$anun->Anuncio}}</a>
@@ -1202,16 +1211,16 @@
                                                                     </button>
 
                                                                     <!--<button class="btn btn-xs btn-info">-->
-                                                                        <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
-                                                                    {!!link_to_route('dashboard.edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
-                                                                    <!--</button>-->
+                                                                        <!--<i class="ace-icon fa fa-pencil bigger-120"></i>--
+                                                                    {!!link_to_route('edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
+                                                                    <!--</button>--
 
-                                                                    {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}
+                                                                    {!!Form::model($anun,['route'=>['destroy',$anun->Id_anun],'method'=>'DELETE'])!!}
                                                                     {!!Form::submit('Eliminar',['class'=>'btn btn-xs btn-danger','type'=>'button'])!!}
                                                                     {!!Form::close()!!}
                                                                     <!--                                                <button class="btn btn-xs btn-danger ">
                                                                                                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                                                                    </button>-->
+                                                                                                                    </button>--
 
                                                                     <button class="btn btn-xs btn-warning">
                                                                         <i class="ace-icon fa fa-flag bigger-120"></i>
@@ -1253,7 +1262,6 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-
 <!--                                    <tr class="detail-row">
                                         <td colspan="8">
                                             <div class="table-detail">
@@ -1358,26 +1366,157 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>-->
-
+                                    </tr>--
                                                         @endforeach
-
                                                     </tbody>
                                                 </table>
-                                            </div><!-- /.span -->
-                                            {{ $anuncios->render() }}
-
+                                            </div><!-- /.span --
+                                            { $anuncios->render( }}
                                             @endif
                                         </div><!-- /.row -->
+
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <h3 class="header smaller lighter blue">Anuncios publicados</h3>
+
+                                                <div class="clearfix">
+                                                    <div class="pull-right tableTools-container"></div>
+                                                </div>
+                                                <div class="table-header">
+                                                    Anuncios publicados
+                                                </div>
+
+                                                <!-- div.table-responsive -->
+
+                                                <!-- div.dataTables_borderWrap -->
+                                                <div>
+                                                    <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    <!--                                                                   
+                                                                    <label class="pos-rel">
+                                                                               <input type="checkbox" class="ace" />
+                                                                                                                                        <span class="lbl"></span>
+                                                                                                                                    </label>
+                                                                    -->
+                                                                    Titulo 
+                                                                </th>
+                                                                <th>Descripción</th>
+                                                                <th>Costo</th>
+                                                                <th class="hidden-480">Clicks</th>
+
+                                                                <th>
+                                                                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
+                                                                    Fecha
+                                                                </th>
+                                                                <th class="hidden-480">Status</th>
+
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            @if(isset($anuncios))
+                                                            @foreach($anuncios as $anun)
+                                                            <tr>
+                                                                <td style="width: 20%">
+                                                                    <!--
+                                                                    <label class="pos-rel">
+                                                                        <input type="checkbox" class="ace" />
+                                                                       <span class="lbl"></span>
+                                                                    </label>
+                                                                    -->
+                                                                    <a href="#">{{$anun->Anuncio}}</a>
+                                                                </td>
+
+                                                                <td style="width: 20%">
+                                                                    <a href="#">{{$anun->Descripcion }}</a>
+                                                                </td>
+                                                                <td style="width: 10%">${{$anun->precio}}</td>
+                                                                <td class="hidden-480" style="width: 10%">{{$anun->Id_anun}}</td>
+                                                                <td style="width: 20%">{{$anun->Fecha}}</td>
+
+                                                                <td class="hidden-480">
+                                                                    @if($anun->activo === 0)
+                                                                    <span class="label label-sm label-success">{{$anun->activo}}- Activo</span>
+                                                                    @elseif($anun->activo === 1)
+                                                                    <span class="label label-sm label-warning">{{$anun->activo}}- Pendiente</span>
+                                                                    @else
+                                                                    <span class="label label-sm label-danger">{{$anun->activo}}- Bloqueado</span>
+                                                                    @endif
+                                                                </td>
+                                                                <td></td>
+
+<!--                                                                <td>
+                                                                    <div class="hidden-sm hidden-xs action-buttons">
+                                                                        <a class="blue" href="#" onclick="status({{$anun->Id_anun}})" >
+                                                                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                                                                        </a>
+
+                                                                        <a class="green" href="#">
+                                                                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                                        </a>
+
+                                                                        <a class="red" href="#">
+                                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="hidden-md hidden-lg">
+                                                                        <div class="inline pos-rel">
+                                                                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                                                                            </button>
+
+                                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                                                <li>
+                                                                                    <a onclick="status()" href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                                                        <span class="blue">
+                                                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </li>
+
+                                                                                <li>
+                                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                                        <span class="green">
+                                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </li>
+
+                                                                                <li>
+                                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                                        <span class="red">
+                                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>-->
+                                                            </tr>
+                                                            @endforeach
+                                                            @endif
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div><!-- /#feed -->
 
                                     <div id="friends" class="tab-pane">
                                         <div class="profile-users clearfix">
+                                            @if(isset($followers))
+                                            @foreach($followers as $fo)
+                                            <?php $info = explode(" - ", $fo->info); ?>
                                             <div class="itemdiv memberdiv">
                                                 <div class="inline pos-rel">
                                                     <div class="user">
                                                         <a href="#">
-                                                            <img src="assets/images/avatars/avatar4.png" alt="Bob Doe's avatar" />
+                                                            <img src="{{ asset('files/profile/'.$info[1]) }}" alt="Bob Doe's avatar" />
                                                         </a>
                                                     </div>
 
@@ -1385,7 +1524,7 @@
                                                         <div class="name">
                                                             <a href="#">
                                                                 <span class="user-status status-online"></span>
-                                                                Bob Doe
+                                                                {{ $info[0] }}
                                                             </a>
                                                         </div>
                                                     </div>
@@ -1420,342 +1559,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="itemdiv memberdiv">
-                                                <div class="inline pos-rel">
-                                                    <div class="user">
-                                                        <a href="#">
-                                                            <img src="{{ asset('assets/images/avatars/avatar1.png') }}" alt="Rose Doe's avatar" />
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="body">
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <span class="user-status status-offline"></span>
-                                                                Rose Doe
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="popover">
-                                                        <div class="arrow"></div>
-
-                                                        <div class="popover-content">
-                                                            <div class="bolder">Graphic Designer</div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o middle bigger-120 grey"></i>
-                                                                <span class="grey"> 30 min ago </span>
-                                                            </div>
-
-                                                            <div class="hr dotted hr-8"></div>
-
-                                                            <div class="tools action-buttons">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-facebook-square blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-google-plus-square red bigger-150"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="itemdiv memberdiv">
-                                                <div class="inline pos-rel">
-                                                    <div class="user">
-                                                        <a href="#">
-                                                            <img src="assets/images/avatars/avatar.png" alt="Jim Doe's avatar" />
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="body">
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <span class="user-status status-busy"></span>
-                                                                Jim Doe
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="popover">
-                                                        <div class="arrow"></div>
-
-                                                        <div class="popover-content">
-                                                            <div class="bolder">SEO &amp; Advertising</div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o middle bigger-120 red"></i>
-                                                                <span class="grey"> 1 hour ago </span>
-                                                            </div>
-
-                                                            <div class="hr dotted hr-8"></div>
-
-                                                            <div class="tools action-buttons">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-facebook-square blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-google-plus-square red bigger-150"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="itemdiv memberdiv">
-                                                <div class="inline pos-rel">
-                                                    <div class="user">
-                                                        <a href="#">
-                                                            <img src="assets/images/avatars/avatar5.png" alt="Alex Doe's avatar" />
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="body">
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <span class="user-status status-idle"></span>
-                                                                Alex Doe
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="popover">
-                                                        <div class="arrow"></div>
-
-                                                        <div class="popover-content">
-                                                            <div class="bolder">Marketing</div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o middle bigger-120 orange"></i>
-                                                                <span class=""> 40 minutes idle </span>
-                                                            </div>
-
-                                                            <div class="hr dotted hr-8"></div>
-
-                                                            <div class="tools action-buttons">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-facebook-square blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-google-plus-square red bigger-150"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="itemdiv memberdiv">
-                                                <div class="inline pos-rel">
-                                                    <div class="user">
-                                                        <a href="#">
-                                                            <img src="assets/images/avatars/avatar2.png" alt="Phil Doe's avatar" />
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="body">
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <span class="user-status status-online"></span>
-                                                                Phil Doe
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="popover">
-                                                        <div class="arrow"></div>
-
-                                                        <div class="popover-content">
-                                                            <div class="bolder">Public Relations</div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o middle bigger-120 orange"></i>
-                                                                <span class="green"> 2 hours ago </span>
-                                                            </div>
-
-                                                            <div class="hr dotted hr-8"></div>
-
-                                                            <div class="tools action-buttons">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-facebook-square blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-google-plus-square red bigger-150"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="itemdiv memberdiv">
-                                                <div class="inline pos-rel">
-                                                    <div class="user">
-                                                        <a href="#">
-                                                            <img src="assets/images/avatars/avatar3.png" alt="Susan Doe's avatar" />
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="body">
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <span class="user-status status-online"></span>
-                                                                Susan Doe
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="popover">
-                                                        <div class="arrow"></div>
-
-                                                        <div class="popover-content">
-                                                            <div class="bolder">HR Management</div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o middle bigger-120 orange"></i>
-                                                                <span class="green"> 20 mins ago </span>
-                                                            </div>
-
-                                                            <div class="hr dotted hr-8"></div>
-
-                                                            <div class="tools action-buttons">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-facebook-square blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-google-plus-square red bigger-150"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="itemdiv memberdiv">
-                                                <div class="inline pos-rel">
-                                                    <div class="user">
-                                                        <a href="#">
-                                                            <img src="assets/images/avatars/avatar1.png" alt="Jennifer Doe's avatar" />
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="body">
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <span class="user-status status-offline"></span>
-                                                                Jennifer Doe
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="popover">
-                                                        <div class="arrow"></div>
-
-                                                        <div class="popover-content">
-                                                            <div class="bolder">Graphic Designer</div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o middle bigger-120 grey"></i>
-                                                                <span class="grey"> 2 hours ago </span>
-                                                            </div>
-
-                                                            <div class="hr dotted hr-8"></div>
-
-                                                            <div class="tools action-buttons">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-facebook-square blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-google-plus-square red bigger-150"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="itemdiv memberdiv">
-                                                <div class="inline pos-rel">
-                                                    <div class="user">
-                                                        <a href="#">
-                                                            <img src="assets/images/avatars/avatar3.png" alt="Alexa Doe's avatar" />
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="body">
-                                                        <div class="name">
-                                                            <a href="#">
-                                                                <span class="user-status status-offline"></span>
-                                                                Alexa Doe
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="popover">
-                                                        <div class="arrow"></div>
-
-                                                        <div class="popover-content">
-                                                            <div class="bolder">Accounting</div>
-
-                                                            <div class="time">
-                                                                <i class="ace-icon fa fa-clock-o middle bigger-120 grey"></i>
-                                                                <span class="grey"> 4 hours ago </span>
-                                                            </div>
-
-                                                            <div class="hr dotted hr-8"></div>
-
-                                                            <div class="tools action-buttons">
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-facebook-square blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                                                                </a>
-
-                                                                <a href="#">
-                                                                    <i class="ace-icon fa fa-google-plus-square red bigger-150"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
+                                            @endif
                                         </div>
 
                                         <div class="hr hr10 hr-double"></div>

@@ -10,7 +10,7 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="{{ URL::action('DashboardController@index') }}">Inicio</a>
+                    <a href="#">Home</a>
                 </li>
                 <li class="active">Dashboard</li>
             </ul><!-- /.breadcrumb -->
@@ -30,11 +30,11 @@
             </div><!-- /.nav-search -->
         </div>
         
-<!--        <div>
-            <h2>Register form</h2>
-            <button type="button" id="getRequest">Get request</button>
-        </div>-->
-
+        <div>
+        <h2>Register form</h2>
+        <button type="button" id="getRequest">Get request</button>
+    </div>
+    
 
         <div class="page-content">
             <div class="ace-settings-container" id="ace-settings-container">
@@ -160,11 +160,11 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">@if(isset($count2)){{ $count2 }} @endif</span>
+                                    <span class="infobox-data-number">{{ $count2 }}</span>
                                     <div class="infobox-content">comentarios </div>
                                 </div>
 
-                                <div class="stat stat-success">@if(isset($percent)){{ $percent[0] }}% @endif</div>
+                                <div class="stat stat-success">{{ $percent[0] }}%</div>
                             </div>
 
                             <div class="infobox infobox-blue">
@@ -189,7 +189,7 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">@if(isset($count)){{ $count }}@endif</span>
+                                    <span class="infobox-data-number">{{ $count }}</span>
                                     <div class="infobox-content">Subscriptores</div>
                                 </div>
                                 <div class="stat stat-important">4%</div>
@@ -212,7 +212,7 @@
                                 </div>
 
                                 <div class="infobox-data">
-                                    <span class="infobox-data-number">@if(isset($users)) {{ $users }} @endif</span>
+                                    <span class="infobox-data-number">{{ $users }}</span>
                                     <div class="infobox-content">Usuarios</div>
                                 </div>
 
@@ -225,7 +225,7 @@
                             <div class="infobox infobox-blue2">
                                 <div class="infobox-progress">
                                     <div class="easy-pie-chart percentage" data-percent="42" data-size="46">
-                                        <span class="percent">@if(isset($count3)) {{ $count3 }} @endif</span>%
+                                        <span class="percent">{{ $count3 }}</span>%
                                     </div>
                                 </div>
 
@@ -1222,7 +1222,7 @@
 
                                                 <!--<button class="btn btn-xs btn-info">-->
                                                     <!--<i class="ace-icon fa fa-pencil bigger-120"></i>-->
-                                                {!!link_to_route('edit', $title = 'Editar', $parameters = ['id'=>$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
+                                                {!!link_to_route('edit', $title = 'Editar', $parameters = [$anun->Id_anun], $attributes = ['style'=>'color:white; text-decoration:none;','class'=>'btn btn-xs btn-info']);!!}
                                                 <!--</button>-->
 
                                                 {!!Form::model($anun,['route'=>['destroy',$anun->Id_anun],'method'=>'DELETE'])!!}

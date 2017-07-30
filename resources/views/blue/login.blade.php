@@ -1,7 +1,7 @@
 @extends('blue.layouts.plantilla')
 @section('content')
 	        <form action="{{ route('valida')}}" method="POST" class="templatemo-login-form">
-	        {{ csrf_filed() }}
+	        
 	        	<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		

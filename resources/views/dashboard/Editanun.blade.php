@@ -6,7 +6,7 @@
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Home</a>
+                    <a href="{{ URL::action('DashboardController@index') }}">Inicio</a>
                 </li>
 
                 <li>
@@ -107,7 +107,7 @@
                 <div class="col-xs-12">
                     <!--                     PAGE CONTENT BEGINS -->
                     @include('dashboard.alerts.request')
-                    {!!Form::model($anun,['route'=>['dashboard.update',$anun->Id_anun],'method'=>'PUT','class'=>'form-horizontal','role'=>'form'])!!}
+                    {!!Form::model($anun,['route'=>['update','id'=>$anun->Id_anun],'method'=>'POST','class'=>'form-horizontal','role'=>'form'])!!}
                     
                     <div class="form-group">
                         {!!Form::label('null','Categoría:', ['class'=>'col-sm-3 control-label no-padding-right','for'=>'form-filed-select-3'])!!}
@@ -162,7 +162,7 @@
 
                     {!!Form::close()!!}
                     
-                    {!!Form::model($anun,['route'=>['dashboard.destroy',$anun->Id_anun],'method'=>'DELETE'])!!}                    
+                    {!!Form::model($anun,['route'=>['destroy',$anun->Id_anun],'method'=>'DELETE'])!!}                    
 
                     <div class="clearfix form-actions">
                         <div class="col-md-offset-3 col-md-9">
