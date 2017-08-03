@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.frame')
+@extends('dashboard.layouts.frames')
 @section('content')
 <div class="main-content">
     <div class="main-content-inner">
@@ -175,8 +175,8 @@
                                                 <div class="col-md-6">
                                                     <input id="amount" type="hidden" class="form-control" name="amount" value="1" autofocus>
 
-                                                    <input id="iduser" type="text" class="form-control" name="iduser" value="{{ $iduser}}" autofocus>
-                                                    variable de session {{ $session }}<a href='{{ route('test') }}'>Prueba test</a><?= $hoy = date("Y-m-d H:i:s"); ?>
+                                                    <input id="iduser" type="hidden" class="form-control" name="iduser" value="{{ $iduser}}" autofocus>
+                                                    <!--variable de session  $session }<a href=' route('test') }'>Prueba test</a>?= $hoy = date("Y-m-d H:i:s"); ?-->
                                                     @if ($errors->has('amount'))
                                                     <span class="help-block">
                                                         <strong>{{ $errors->first('amount') }}</strong>
@@ -192,41 +192,29 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </form>
-                                         <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{!! URL::route('cardpaypal') !!}" >
+                                        </form><hr />
+                                        <center>
+                                        <form action="{{ route('cardsuscribe') }}" method="POST" class="form-horizontal">
                                             {{ csrf_field() }}
-
-                                            <div class="form-group{{ $errors->has('amount') ? ' has-error' : '' }}">
-
-
-                                                <div class="col-md-6">
-                                                    <input id="amount" type="hidden" class="form-control" name="c" value="1" autofocus>
-
-                                                    <input id="iduser" type="text" class="form-control" name="iduser" value="{{ $iduser}}" autofocus>
-                                                    variable de session {{ $session }}<a href='{{ route('test') }}'>Prueba test</a><?= $hoy = date("Y-m-d H:i:s"); ?>
-                                                    @if ($errors->has('amount'))
-                                                    <span class="help-block">
-                                                        <strong>{{ $errors->first('amount') }}</strong>
-                                                    </span>
-                                                    @endif
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-md-offset-4">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Pagar con Tarjeta
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            <script
+                                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                data-key="{{config('services.stripe.key') }}"
+                                                data-amount="1"
+                                                data-name="Anunciate!"
+                                                data-description="Paga tu subscripción en Anunciate!.."
+                                                data-image="{{ asset('images/logo.ico') }}"
+                                                data-locale="">
+                                            </script>
+                                        </form></center><br><hr />
+                                        <center>
                                         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                             <input type="hidden" name="cmd" value="_s-xclick">
                                             <input type="hidden" name="hosted_button_id" value="DPWX4W6UXM4S4">
                                             <input type="image" src="https://www.paypalobjects.com/es_XC/MX/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
                                             <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
                                         </form>
-
+</center>                               <hr />
+<center><a href="http://localhost:8180/anunciatec2/Control_Dashuser" class="btn btn-md btn-danger">Cancelar</a></center><br>
                                     </div>
                                 </div>
                             </div>

@@ -38,7 +38,7 @@ Route::get('paypal', array('as' => 'statuspaypal','uses' => 'PaypalController@ge
 //////////// CREDIT CARD
 
 // route for post request
-Route::post('cardpaypal', array('as' => 'cardpaypal','uses' => 'PaypalcardController@postPaymentWithcardpaypal',));
+Route::post('cardsuscribe', array('as' => 'cardsuscribe','uses' => 'PaymentscardController@postPaymentWithcard',));
 // route for check status responce
 //Route::get('paypal', array('as' => 'statuspaypal','uses' => 'PaypalcardController@getPaymentStatus',));
 

@@ -11,8 +11,7 @@ use Redirect;
 //use Input;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
-
-/** All Paypal Details class **/
+/** All Paypal Details class * */
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
@@ -36,24 +35,22 @@ class PaypalController extends Controller {
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_conf['client_id'], $paypal_conf['secret']));
         $this->_api_context->setConfig($paypal_conf['settings']);
     }
-    
-       public function payWithPaypal()
-    {
+
+    public function payWithPaypal() {
         return view('dashboard/paypal');
     }
 
-
     public function postPaymentWithpaypal(Request $request) {
-        $id = $request->input('iduser');
-        Session::put('key', $id);
-        
-        
+//        $id = $request->input('iduser');
+//        Session::put('key', $id);
+
+
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
         $item_1 = new Item();
-        
-        
+
+
         $item_1->setName('Item 1') /** item name * */
                 ->setCurrency('MXN')
                 ->setQuantity(1)
@@ -135,9 +132,9 @@ class PaypalController extends Controller {
         $result = $payment->execute($execution, $this->_api_context);
         /** dd($result);exit; /** DEBUG RESULT, remove it later * */
         if ($result->getState() == 'approved') {
-            
-             $this->saveOrder(\Session::get('cart'));
-			 \Session::forget('cart');
+            $this->saveOrder(\Session::get('cart'));
+
+            \Session::forget('cart');
 
             /** it's all right * */
             /** Here Write your database logic like that insert record or value in database if you want * */
@@ -148,24 +145,25 @@ class PaypalController extends Controller {
 
         return Redirect('http://localhost:8180/anunciatec2/Control_Dashuser');
     }
-    
-    private function saveOrder()
-	{
-	    $total = 100;
+
+    private function saveOrder() {
+//        $total = 100;
 //	    $id_usuario = 0;
-            $id = Session::get('key');
-	    //$date= date('d-m-Y',strtotime('-30 day'));
-	    //$date  = DB::select('SELECT DATE_ADD(CURDATE(), INTERVAL +1 MONTH)');
-	                 $hoy = date("Y-m-d H:i:s");
- 
-	       \Anunciate\Suscripcion::create([
-                   
-                'id'=> $id,
-                'Id_tiposus'=>$total,
-                'Fecha_ini'=>$hoy,
-                'Activo'=>'1'
-            ]);
-	   
-	}
+        $id = Session::get('key');
+        //$date= date('d-m-Y',strtotime('-30 day'));
+        //$date  = DB::select('SELECT DATE_ADD(CURDATE(), INTERVAL +1 MONTH)');
+//        $hoy = date("Y-m-d H:i:s");
+
+//	       \Anunciate\Suscripcion::create([
+//                'id'=> $id,
+//                'Id_tiposus'=>1,
+//                'Fecha_ini'=>$hoy,
+//                'Activo'=>'0'
+//            ]);
+
+        DB::table('subscriptions')->insert(
+                ['user_id' => $id, 'name' => 'basica','stripe_plan'=>'basica']
+        );
+    }
 
 }

@@ -63,14 +63,14 @@ class PaypalcardController extends Controller {
         $item1 = new Item();
         $item1->setName('Ground Coffee 40 oz')
             ->setDescription('Ground Coffee 40 oz')
-            ->setCurrency('USD')
+            ->setCurrency('MXN')
             ->setQuantity(1)
             ->setTax(0.3)
             ->setPrice(7.50);
         $item2 = new Item();
         $item2->setName('Granola bars')
             ->setDescription('Granola Bars with Peanuts')
-            ->setCurrency('USD')
+            ->setCurrency('MXN')
             ->setQuantity(5)
             ->setTax(0.2)
             ->setPrice(2);
@@ -89,7 +89,7 @@ class PaypalcardController extends Controller {
         // You can also specify additional details
         // such as shipping, tax.
         $amount = new Amount();
-        $amount->setCurrency("USD")
+        $amount->setCurrency("MXN")
             ->setTotal(20)
             ->setDetails($details);
         // ### Transaction

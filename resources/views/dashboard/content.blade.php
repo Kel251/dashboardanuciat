@@ -131,7 +131,15 @@
                     </small>
                 </h1>
             </div><!-- /.page-header -->
-
+//<!--?php foreach ($consultaimg as $cons) {
+//           // Datos binarios de la imagen.
+//       echo $cons->tipo_imagen."tipppppppppppppp";  // Mime Type de la imagen.
+//        // Mandamos las cabeceras al navegador indicando el tipo de datos que vamos a enviar.
+//        //header("Content-type: $cons->tipo_imagen;");
+//        // A continuación enviamos el contenido binario de la imagen.
+//        
+//        } ?>
+ <img src='//?php echo $img; ?>'/-->
             <div class="row" id="hide">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
