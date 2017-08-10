@@ -278,10 +278,14 @@
                 @if (Auth::guest() === FALSE)
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="{{asset('files/profile/'. Auth::user()->Foto_perfil) }}" alt="Jason's Photo" />
+                        @if(Auth::user()->Foto_perfil)
+                        <img class="nav-user-photo" src="{{asset('files/profile/'. Auth::user()->Foto_perfil) }}" alt="{{ Auth::user()->username }} Foto" />
+                        @else
+                        <img class="nav-user-photo" src="{{asset('files/profile/sombra.png') }}" alt="{{ Auth::user()->username }} Foto" />
+                        @endif
                         <span class="user-info">
                             <small>Hola!!</small>
-                             {{ Auth::user()->name }}
+                             {{ Auth::user()->username }}
                         </span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -289,16 +293,16 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="{{ route('settings') }}">
                                 <i class="ace-icon fa fa-cog"></i>
                                 Settings
                             </a>
                         </li>
 
                         <li>
-                            <a href="profile.html">
+                            <a href="{{ route('profile') }}">
                                 <i class="ace-icon fa fa-user"></i>
-                                Profile
+                                Perfil
                             </a>
                         </li>
 

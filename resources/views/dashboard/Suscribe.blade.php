@@ -194,27 +194,27 @@
                                             </div>
                                         </form><hr />
                                         <center>
-                                        <form action="{{ route('cardsuscribe') }}" method="POST" class="form-horizontal">
-                                            {{ csrf_field() }}
-                                            <script
-                                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                data-key="{{config('services.stripe.key') }}"
-                                                data-amount="1"
-                                                data-name="Anunciate!"
-                                                data-description="Paga tu subscripción en Anunciate!.."
-                                                data-image="{{ asset('images/logo.ico') }}"
-                                                data-locale="">
-                                            </script>
-                                        </form></center><br><hr />
+                                            <form action="{{ route('cardsuscribe') }}" method="POST" class="form-horizontal">
+                                                {{ csrf_field() }}
+                                                <script
+                                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                    data-key="{{config('services.stripe.key') }}"
+                                                    data-amount="1"
+                                                    data-name="Anunciate!"
+                                                    data-description="Paga tu subscripción en Anunciate!.."
+                                                    data-image="{{ asset('images/logo.ico') }}"
+                                                    data-locale="">
+                                                </script>
+                                            </form></center><br><hr />
                                         <center>
-                                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                            <input type="hidden" name="cmd" value="_s-xclick">
-                                            <input type="hidden" name="hosted_button_id" value="DPWX4W6UXM4S4">
-                                            <input type="image" src="https://www.paypalobjects.com/es_XC/MX/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
-                                            <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                                        </form>
-</center>                               <hr />
-<center><a href="http://localhost:8180/anunciatec2/Control_Dashuser" class="btn btn-md btn-danger">Cancelar</a></center><br>
+                                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                                <input type="hidden" name="cmd" value="_s-xclick">
+                                                <input type="hidden" name="hosted_button_id" value="DPWX4W6UXM4S4">
+                                                <input type="image" src="https://www.paypalobjects.com/es_XC/MX/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
+                                                <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                                            </form>
+                                        </center>                               <hr />
+                                        <center><a href="http://localhost:8180/anunciatec2/Control_Dashuser/index/1" class="btn btn-md btn-danger">Cancelar</a></center><br>
                                     </div>
                                 </div>
                             </div>

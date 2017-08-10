@@ -66,9 +66,10 @@ Route::resource('blue','BlueController');
 
 Route::name('dashboard')->get('dashboard','DashboardController@index');
 Route::name('edit')->get('dashboard/edit/{id}','DashboardController@edit');
-Route::name('destroy')->get('dashboard/destroy','DashboardController@destroy');
+Route::name('destroy')->delete('dashboard/destroy/{id}','DashboardController@destroy');
 Route::get('dasboard/create','DashboardController@create');
 Route::name('store')->post('store','DashboardController@store');
+Route::name('store2')->post('store2','DashboardController@store2');
 Route::name('update')->post('update/{id}','DashboardController@update');
 //Route::name('dashboard')->get('dashboard', 'BlueController@dashboard');
 //Route::name('search_name')->post('dashboard', 'DashboardController@index'); 
@@ -122,3 +123,5 @@ Route::get('deshboard/getRequest',function(){
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('dashboard/admin', 'DashboardController@profileadmin')->name('profile');
+Route::get('dashboard/settings', 'DashboardController@settingsadmin')->name('settings');

@@ -110,6 +110,31 @@ class DashboardController extends Controller {
 
         return redirect('/dashboard')->with('message', 'Anuncio creado correctamente');
     }
+    
+    public function store2(ValForms $request) {
+        //obtenemos el campo de file definido en el formulario
+        $file = $request->file('archivo');
+
+        //obtenemos el nombre del archivo
+        $img = $file->getClientOriginalName();
+//        $name = $request->file('archivo')->getClientOriginalName();
+//        /indicamos ue queremos guardar un nuevo archivo eb el disco local
+        \Storage::disk('local')->put($img, \File::get($file));
+
+        \Anunciate\Anuncio::create([
+            'Anuncio' => $request['Anuncio'],
+            'Descripcion' => $request['Descripcion'],
+            'telefono' => $request['telefono'],
+            'email' => $request['email'],
+            'precio' => $request['precio'],
+            'Id_est' => $request['Id_est'],
+            'Id_mun' => $request['Id_mun'],
+            'Id_cat' => $request['Id_cat'],
+            'archivo' => $img
+        ]);
+
+        return redirect('/dashboard')->with('message', 'Anuncio creado correctamente');
+    }
 
     // OBTIENE LOS DATOS DE LA BD PARA PODER MODIFICAR UN RESPECTIVO ANUNCIO
     public function edit($Id_anun) {
@@ -354,6 +379,14 @@ class DashboardController extends Controller {
     public function pruebasession() {
         $session = Session::get('key');
         return view('test', compact('session'));
+    }
+    
+    public function profileadmin(){
+        return view('dashboard.profileadmin');
+    }
+    
+    public function settingsadmin(){
+        return view('dashboard.aditadmin');
     }
 
 }

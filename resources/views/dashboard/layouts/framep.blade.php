@@ -837,7 +837,7 @@
 
                     $.each(datoslaravel, function (index, val) {
                         var iduser = val.id;
-                        ubicacion(iduser);
+                        //ubicacion(iduser);
                         $('#anuncio').append('<tr><td rowspan="4" width="370px"><img src="<?php echo asset('files') ?>/' + val.archivo + '" width="350px" height="280px"/></td><td><span class="ace-icon fa fa-circle blue" style="font-size:14px;/"></span> Titulo:<br/>' + val.Anuncio + '</td></tr><tr><td><span class="ace-icon fa fa-circle blue" style="font-size:14px;/"></span> Descripición:<br/>' + val.Descripcion + '</td></tr><tr><td><span class="ace-icon fa fa-circle blue" style="font-size:14px;/"></span> Fecha de publicación:<br/>' + val.Fecha + '</td></tr><tr><td><span class="ace-icon fa fa-circle blue" style="font-size:14px;/"></span> Categoría en la que se publico:<br/>' + val.Nom_cat + '<br/>' + val.Nom_subcat + '</td></tr><tr><td><span class="ace-icon fa fa-circle blue" style="font-size:14px;/"></span> Lugar donde se publico:<br/>' + val.Nom_est + '<br/>' + val.Nom_mun + '</td><td><span class="ace-icon fa fa-circle green" style="font-size:14px;/"></span> Precio establecido para el anuncio:<br/>$' + val.id + '</td><tr>');
                     });
 

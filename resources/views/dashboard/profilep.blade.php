@@ -634,26 +634,26 @@
 
                                                     <td class="hidden-480">
                                                         @if($anun->activo === 0)
-                                                        <span class="label label-sm label-success">{{$anun->activo}}- Activo</span>
+                                                        <span class="label label-sm label-success">Activo</span>
                                                         @elseif($anun->activo === 1)
-                                                        <span class="label label-sm label-warning">{{$anun->activo}}- Pendiente</span>
+                                                        <span class="label label-sm label-warning">Pendiente</span>
                                                         @else
-                                                        <span class="label label-sm label-danger">{{$anun->activo}}- Bloqueado</span>
+                                                        <span class="label label-sm label-danger">Bloqueado</span>
                                                         @endif
                                                     </td>
 
                                                     <td>
                                                         <div class="hidden-sm hidden-xs action-buttons">
-                                                            <a class="blue" href="#my-modal" data-toggle="modal" onclick="anuncio( {{ $anun->Id_anun }} );">
+                                                            <a title="Ver más sobre el anuncio" class="blue" href="#my-modal" data-toggle="modal" onclick="anuncio( {{ $anun->Id_anun }} );">
                                                                 <i class="ace-icon fa fa-search-plus bigger-130"></i>
                                                             </a>
 
-                                                            <a class="green" href="{{ URL::action('DashboardController@statusanuncio',['id_anun'=>$anun->Id_anun,'bann'=>$anun->activo,'idu'=>$anun->id]) }}">
-                                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                            <a title="Activar" class="green" href="{{ URL::action('DashboardController@statusanuncio',['id_anun'=>$anun->Id_anun,'bann'=>$anun->activo,'idu'=>$anun->id]) }}">
+                                                                <i class="ace-icon fa fa-check"></i>
                                                             </a>
 
-                                                            <a class="red" href="{{ URL::action('DashboardController@blockanun',['id_anun'=>$anun->Id_anun,'bann'=>$anun->activo,'idu'=>$anun->id]) }}">
-                                                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                                                            <a title="Bloquear" class="red" href="{{ URL::action('DashboardController@blockanun',['id_anun'=>$anun->Id_anun,'bann'=>$anun->activo,'idu'=>$anun->id]) }}">
+                                                                <i class="ace-icon fa  fa-ban bigger-130"></i>
                                                             </a>
                                                         </div>
 
