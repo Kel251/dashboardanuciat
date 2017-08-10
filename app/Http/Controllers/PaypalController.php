@@ -119,7 +119,7 @@ class PaypalController extends Controller {
         Session::forget('paypal_payment_id');
         if (empty(input::get('PayerID')) || empty(input::get('token'))) {
             \Session::put('error', 'La compra se cancelo! failed');
-            return Redirect('http://localhost:8180/anunciatec2/Control_Dashuser');
+            return Redirect('http://localhost:8180/anunciatec2/Control_Dashuser/index/1');
         }
         $payment = Payment::get($payment_id, $this->_api_context);
         /** PaymentExecution object includes information necessary * */
@@ -139,11 +139,11 @@ class PaypalController extends Controller {
             /** it's all right * */
             /** Here Write your database logic like that insert record or value in database if you want * */
             \Session::put('success', 'La compra se realizo de forma satisfactoría.');
-            return Redirect('http://localhost:8180/anunciatec2/Control_Dashuser');
+            return Redirect('http://localhost:8180/anunciatec2/Control_Dashuser/index/0');
         }
         \Session::put('error', 'La compra fallo.');
 
-        return Redirect('http://localhost:8180/anunciatec2/Control_Dashuser');
+        return Redirect('http://localhost:8180/anunciatec2/Control_Dashuser/index/1');
     }
 
     private function saveOrder() {
@@ -153,7 +153,6 @@ class PaypalController extends Controller {
         //$date= date('d-m-Y',strtotime('-30 day'));
         //$date  = DB::select('SELECT DATE_ADD(CURDATE(), INTERVAL +1 MONTH)');
 //        $hoy = date("Y-m-d H:i:s");
-
 //	       \Anunciate\Suscripcion::create([
 //                'id'=> $id,
 //                'Id_tiposus'=>1,
@@ -161,8 +160,13 @@ class PaypalController extends Controller {
 //                'Activo'=>'0'
 //            ]);
 
+        $fecha = date('Y-m-j H:i:s');
+        $nuevafecha = strtotime('+1 month', strtotime($fecha));
+        $nuevafecha1 = date('Y-m-j H:i:s', $nuevafecha);
+
+
         DB::table('subscriptions')->insert(
-                ['user_id' => $id, 'name' => 'basica','stripe_plan'=>'basica']
+                ['user_id' => $id, 'name' => 'basica', 'stripe_plan' => 'basica','finish_at'=>$nuevafecha1]
         );
     }
 

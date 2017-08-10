@@ -385,12 +385,12 @@
 
                     $.each(datoslaravel, function (index, val) {
                         var suma = suma + parseInt(val.precio);
-                        if (val.Activo === 0) {
+                        if (val.activo === 0) {
                             var activa = '<span class="label label-sm label-success"> Activado </span>';
                         } else {
                             var activa = '<span class="label label-sm label-danger"> Expiro </span>';
                         }
-                        $('#pagos').append('<tr><td>' + num++ + '</td><td>' + val.stripe_plan + '</td> <td> $' + val.costo + '</td><td>' + val.created_at + '</td><td>' + val.ends_at + '</td><td>' + activa + '</td><tr>');
+                        $('#pagos').append('<tr><td>' + num++ + '</td><td>' + val.stripe_plan + '</td> <td> $' + val.costo + '</td><td>' + val.created_at + '</td><td>' + val.finish_at + '</td><td>' + activa + '</td><tr>');
                     });
 
                 }, 'json');
